@@ -40,9 +40,13 @@ RSpec.describe Etiqueta do
         expect(@apple.azucares).to be >= 0
         expect(@apple.azucares).to eq(20.62)
       end
-      it "Proteínas correctamente indicadss" do
+      it "Proteínas correctamente indicadas" do
         expect(@apple.proteinas).to be >= 0
         expect(@apple.proteinas).to eq(0.63)
+      end
+      it "Sal correctamente indicada" do
+        expect(@apple.sal).to be >= 0
+        expect(@apple.sal).to eq(2.40)
       end
 
     end
