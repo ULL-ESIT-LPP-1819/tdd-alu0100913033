@@ -28,6 +28,10 @@ RSpec.describe Etiqueta do
         expect(@apple.grasas).to be >= 0
         expect(@apple.grasas).to eq(0.72)
       end
+      it "Grasas saturadas correctamente indicadas" do
+        expect(@apple.grasas_sat).to be >= 0
+        expect(@apple.grasas_sat).to eq(0.12)
+      end
 
     end
 
