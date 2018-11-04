@@ -21,7 +21,12 @@ RSpec.describe Etiqueta do
         expect(@apple.nombre).to eq("manzana")
       end
       it "Valor energético especificado" do
+        expect(@apple.v_energetico).to be >= 0
         expect(@apple.v_energetico).to eq(108.16)
+      end
+      it "Grasas correctamente indicadas" do
+        expect(@apple.grasas).to be >= 0
+        expect(@apple.grasas).to eq(0.72)
       end
 
     end
