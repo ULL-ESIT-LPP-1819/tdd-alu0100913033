@@ -1,6 +1,6 @@
 module Etiqueta
   class Etiqueta
-    attr_reader :v_energetico, :grasas, :grasas_sat, :hidratos, :azucares, :proteinas, :sal
+    attr_reader :nombre, :v_energetico, :grasas, :grasas_sat, :hidratos, :azucares, :proteinas, :sal
 
     def initialize (nombre, v_energetico, grasas, grasas_sat, hidratos, azucares, proteinas, sal)
       @nombre = nombre
