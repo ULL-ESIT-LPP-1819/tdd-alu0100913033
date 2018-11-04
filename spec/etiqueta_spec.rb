@@ -20,6 +20,10 @@ RSpec.describe Etiqueta do
       it "Nombre bien especificado" do
         expect(@apple.nombre).to eq("manzana")
       end
+      it "Valor energético especificado" do
+        expect(@apple.v_energetico).to eq(108.16)
+      end
+
     end
 
 
