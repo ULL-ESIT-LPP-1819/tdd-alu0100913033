@@ -32,9 +32,17 @@ RSpec.describe Etiqueta do
         expect(@apple.grasas_sat).to be >= 0
         expect(@apple.grasas_sat).to eq(0.12)
       end
-      it "Hidratos de carbono correctamente indicadss" do
+      it "Hidratos de carbono correctamente indicados" do
         expect(@apple.hidratos).to be >= 0
         expect(@apple.hidratos).to eq(22.8)
+      end
+      it "Azúcares correctamente indicados" do
+        expect(@apple.azucares).to be >= 0
+        expect(@apple.azucares).to eq(20.62)
+      end
+      it "Proteínas correctamente indicadss" do
+        expect(@apple.proteinas).to be >= 0
+        expect(@apple.proteinas).to eq(0.63)
       end
 
     end
