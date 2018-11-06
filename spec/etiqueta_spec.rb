@@ -57,30 +57,35 @@ RSpec.describe Etiqueta do
         expect(@apple.almidon).to eq(0)
       end
       it "Fibra correctamente indicada" do
-        expect(@apple.polialcoholes).not_to be_nil
-        expect(@apple.polialcoholes).to be >= 0
-        expect(@apple.polialcoholes).to eq(4.04)
+        expect(@apple.fibra).not_to be_nil
+        expect(@apple.fibra).to be >= 0
+        expect(@apple.fibra).to eq(4.04)
       end
-      it "Hidratos de carbono correctamente indicados" do
-        expect(@apple.hidratos).not_to be_nil
-        expect(@apple.hidratos).to be >= 0
-        expect(@apple.hidratos).to eq(22.8)
+      it "Vitaminas correctamente indicadas" do
+        expect(@apple.vitaminas).not_to be_nil
+        expect(@apple.vitaminas).to be >= 0
+        expect(@apple.vitaminas).to eq(72.82)
       end
-      it "Azúcares correctamente indicados" do
-        expect(@apple.azucares).not_to be_nil
-        expect(@apple.azucares).to be >= 0
-        expect(@apple.azucares).to eq(20.62)
-      end
-      it "Proteínas correctamente indicadas" do
-        expect(@apple.proteinas).not_to be_nil
-        expect(@apple.proteinas).to be >= 0
-        expect(@apple.proteinas).to eq(0.63)
-      end
-      it "Sal correctamente indicada" do
-        expect(@apple.sal).not_to be_nil
-        expect(@apple.sal).to be >= 0
-        expect(@apple.sal).to eq(2.40)
-      end
+      #it "Hidratos de carbono correctamente indicados" do
+      #  expect(@apple.hidratos).not_to be_nil
+      #  expect(@apple.hidratos).to be >= 0
+      #  expect(@apple.hidratos).to eq(22.8)
+      #end
+      #it "Azúcares correctamente indicados" do
+      #  expect(@apple.azucares).not_to be_nil
+      #  expect(@apple.azucares).to be >= 0
+      #  expect(@apple.azucares).to eq(20.62)
+      #end
+      #it "Proteínas correctamente indicadas" do
+      #  expect(@apple.proteinas).not_to be_nil
+      #  expect(@apple.proteinas).to be >= 0
+      #  expect(@apple.proteinas).to eq(0.63)
+      #end
+      #it "Sal correctamente indicada" do
+      #  expect(@apple.sal).not_to be_nil
+      #  expect(@apple.sal).to be >= 0
+      #  expect(@apple.sal).to eq(2.40)
+      #end
     end
 
 
