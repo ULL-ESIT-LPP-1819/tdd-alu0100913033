@@ -66,6 +66,11 @@ RSpec.describe Etiqueta do
         expect(@apple.vitaminas).to be >= 0
         expect(@apple.vitaminas).to eq(72.82)
       end
+      it "Minerales correctamente indicados" do
+        expect(@apple.minerales).not_to be_nil
+        expect(@apple.minerales).to be >= 0
+        expect(@apple.minerales).to eq(289.18)
+      end
       #it "Hidratos de carbono correctamente indicados" do
       #  expect(@apple.hidratos).not_to be_nil
       #  expect(@apple.hidratos).to be >= 0
