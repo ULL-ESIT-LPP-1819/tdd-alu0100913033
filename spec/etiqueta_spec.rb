@@ -124,6 +124,9 @@ RSpec.describe Etiqueta do
     it " * Ingesta de referencia de la porción en kcal/g" do
       expect(@apple.ir_kcal).to eq(0.09444)
     end
+    it " * Grasas totales por porción de 100g o 100ml" do
+      expect(@apple.grasas_cien).to eq(0.0072)
+    end
 
 
 
