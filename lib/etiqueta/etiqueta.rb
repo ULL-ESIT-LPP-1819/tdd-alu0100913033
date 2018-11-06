@@ -35,6 +35,11 @@ module Etiqueta
       self.valor_energetico_kj / 8400
     end
 
+    def ir_kcal
+      self.valor_energetico_kcal / 2000
+    end
+
+
 
 
 
