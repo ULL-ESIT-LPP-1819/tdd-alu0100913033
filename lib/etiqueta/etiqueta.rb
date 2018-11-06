@@ -1,11 +1,10 @@
 module Etiqueta
   class Etiqueta
-    attr_reader :nombre, :cantidad, :v_energetico, :grasas, :grasas_sat, :grasas_mono, :grasas_poli, :polialcoholes, :almidon, :fibra, :vitaminas, :minerales, :hidratos, :azucares, :proteinas, :sal
+    attr_reader :nombre, :cantidad, :grasas, :grasas_sat, :grasas_mono, :grasas_poli, :polialcoholes, :almidon, :fibra, :vitaminas, :minerales, :hidratos, :azucares, :proteinas, :sal
 
-    def initialize (nombre, cantidad, v_energetico, grasas, grasas_sat, grasas_mono, grasas_poli, polialcoholes, almidon, fibra, vitaminas, minerales, hidratos, azucares, proteinas, sal)
+    def initialize (nombre, cantidad, grasas, grasas_sat, grasas_mono, grasas_poli, polialcoholes, almidon, fibra, vitaminas, minerales, hidratos, azucares, proteinas, sal)
       @cantidad = cantidad
       @nombre = nombre
-      @v_energetico = v_energetico
       @grasas = grasas
       @grasas_sat = grasas_sat
       @grasas_mono = grasas_mono
@@ -21,10 +20,8 @@ module Etiqueta
       @sal = sal
     end
 
-    def to_s
 
 
-    end
 
 
   end

@@ -6,14 +6,14 @@ RSpec.describe Etiqueta do
    #Creación correcta de una clase
   context "# Inicialización de la clase etiqueta" do
     it "Se crea una etiqueta \"manzana\" correctamente" do
-      apple = Etiqueta::Etiqueta.new("manzana", 200.0, 108.16, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+      apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     end
   end # context
 
   # Existencia de los parámetros
   context "# Comprobar parámetros de la clase" do
     before :each  do
-      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 108.16, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     end
 
 
@@ -25,11 +25,6 @@ RSpec.describe Etiqueta do
         expect(@apple.cantidad).not_to be_nil
         expect(@apple.cantidad).to be >=0
         expect(@apple.cantidad).to eq(200.0)
-      end
-      it " * Valor energético especificado" do
-        expect(@apple.v_energetico).not_to be_nil
-        expect(@apple.v_energetico).to be >= 0
-        expect(@apple.v_energetico).to eq(108.16)
       end
       it " * Grasas correctamente indicadas" do
         expect(@apple.grasas).not_to be_nil
@@ -96,16 +91,9 @@ RSpec.describe Etiqueta do
         expect(@apple.sal).to be >= 0
         expect(@apple.sal).to eq(2.4)
       end
-    end
+    end # describe
+
+  end # context
 
 
-
-
-  end
-
-
-
-
-
-
-end
+end # RSpec.describe Etiqueta
