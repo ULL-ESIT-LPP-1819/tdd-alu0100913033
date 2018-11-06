@@ -22,6 +22,21 @@ module Etiqueta
 
 
 
+    def valor_energetico_kj_cien
+      self.valor_energetico_kj / 100
+    end
+
+    def valor_energetico_kcal_cien
+      self.valor_energetico_kcal / 100
+    end
+
+    def ir_kj_cien
+      self.valor_energetico_kj_cien / 8400
+    end
+
+    def ir_kcal_cien
+      self.valor_energetico_kcal_cien / 2000
+    end
 
     def valor_energetico_kj
       @grasas*37 + (@hidratos + @proteinas)*17
@@ -39,14 +54,6 @@ module Etiqueta
       self.valor_energetico_kcal / 2000
     end
 
-    def valor_energetico_kj_cien
-      self.valor_energetico_kj / 100
-    end
-
-
-    def valor_energetico_kcal_cien
-      self.valor_energetico_kcal / 100
-    end
 
 
 

@@ -99,6 +99,19 @@ RSpec.describe Etiqueta do
     before :each do
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     end
+
+    it " * Valor energético en kJ/g por porción de 100g o 100ml" do
+      expect(@apple.valor_energetico_kj_cien).to eq(4.2495)
+    end
+    it " * Valor energético en kcal/g por porción de 100g o 100ml" do
+      expect(@apple.valor_energetico_kcal_cien).to eq(1.8888)
+    end
+    it " * Ingesta de referencia de la porción en kJ/g por porción de 100g o 100ml" do
+      expect(@apple.ir_kj_cien).to eq(0.0005058928571428572)
+    end
+    it " * Ingesta de referencia de la porción en kcal/g por porción de 100g o 100ml" do
+      expect(@apple.ir_kcal_cien).to eq(0.0009444)
+    end
     it " * Valor energético en kJ/g" do
       expect(@apple.valor_energetico_kj).to eq(424.95)
     end
@@ -111,12 +124,8 @@ RSpec.describe Etiqueta do
     it " * Ingesta de referencia de la porción en kcal/g" do
       expect(@apple.ir_kcal).to eq(0.09444)
     end
-    it " * Valor energético en kJ/g por porción de 100g o 100ml" do
-      expect(@apple.valor_energetico_kj_cien).to eq(4.2495)
-    end
-    it " * Valor energético en kcal/g por porción de 100g o 100ml" do
-      expect(@apple.valor_energetico_kcal_cien).to eq(1.8888)
-    end
+
+
 
 
 
