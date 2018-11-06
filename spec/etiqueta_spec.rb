@@ -102,7 +102,14 @@ RSpec.describe Etiqueta do
     it " * Valor energético en kJ/g" do
       expect(@apple.valor_energetico_kj).to eq(424.95)
     end
+    it " * Valor energético en kcal/g" do
+      expect(@apple.valor_energetico_kcal).to eq(188.88)
+    end
+    #it " * Output de la etiqueta" do
+    #  expect(@apple.to_s).to eq(" ")
+    #end
 
   end # context
+
 
 end # RSpec.describe Etiqueta

@@ -21,9 +21,20 @@ module Etiqueta
     end
 
 
+
+
     def valor_energetico_kj
       @grasas*37 + (@hidratos + @proteinas)*17
     end
+
+    def valor_energetico_kcal
+      @grasas*9 + (@hidratos + @hidratos)*4
+    end
+
+    def ir_kj
+      self.valor_energetico_kj / 8400
+    end
+
 
 
 
