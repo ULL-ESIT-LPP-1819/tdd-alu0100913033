@@ -44,6 +44,10 @@ module Etiqueta
     end
 
 
+    def valor_energetico_kcal_cien
+      self.valor_energetico_kcal / 100
+    end
+
 
 
 
