@@ -56,6 +56,11 @@ RSpec.describe Etiqueta do
         expect(@apple.almidon).to be >= 0
         expect(@apple.almidon).to eq(0)
       end
+      it "Fibra correctamente indicada" do
+        expect(@apple.polialcoholes).not_to be_nil
+        expect(@apple.polialcoholes).to be >= 0
+        expect(@apple.polialcoholes).to eq(4.04)
+      end
       it "Hidratos de carbono correctamente indicados" do
         expect(@apple.hidratos).not_to be_nil
         expect(@apple.hidratos).to be >= 0
