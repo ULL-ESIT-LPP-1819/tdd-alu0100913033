@@ -71,16 +71,16 @@ RSpec.describe Etiqueta do
         expect(@apple.minerales).to be >= 0
         expect(@apple.minerales).to eq(289.18)
       end
-      #it "Hidratos de carbono correctamente indicados" do
-      #  expect(@apple.hidratos).not_to be_nil
-      #  expect(@apple.hidratos).to be >= 0
-      #  expect(@apple.hidratos).to eq(22.8)
-      #end
-      #it "Azúcares correctamente indicados" do
-      #  expect(@apple.azucares).not_to be_nil
-      #  expect(@apple.azucares).to be >= 0
-      #  expect(@apple.azucares).to eq(20.62)
-      #end
+      it "Hidratos de carbono correctamente indicados" do
+        expect(@apple.hidratos).not_to be_nil
+        expect(@apple.hidratos).to be >= 0
+        expect(@apple.hidratos).to eq(20.62)
+      end
+      it "Azúcares correctamente indicados" do
+        expect(@apple.azucares).not_to be_nil
+        expect(@apple.azucares).to be >= 0
+        expect(@apple.azucares).to eq(20.62)
+      end
       #it "Proteínas correctamente indicadas" do
       #  expect(@apple.proteinas).not_to be_nil
       #  expect(@apple.proteinas).to be >= 0
