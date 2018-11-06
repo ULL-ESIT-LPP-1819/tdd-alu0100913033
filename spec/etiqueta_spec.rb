@@ -130,6 +130,9 @@ RSpec.describe Etiqueta do
     it " * Grasas saturadas por porción de 100g o 100ml" do
       expect(@apple.grasas_sat_cien).to eq(0.0012)
     end
+    it " * Grasas monoinsaturadas por porción de 100g o 100ml" do
+      expect(@apple.grasas_mono_cien).to eq(0.003)
+    end
 
 
 

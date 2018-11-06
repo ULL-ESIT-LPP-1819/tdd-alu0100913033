@@ -63,6 +63,10 @@ module Etiqueta
       @grasas_sat / 100
     end
 
+    def grasas_mono_cien
+      @grasas_mono / 100
+    end
+
 
 
   end
