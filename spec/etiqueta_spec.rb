@@ -95,7 +95,7 @@ RSpec.describe Etiqueta do
 
   end # context
 
-  context "# Algunas funciones de clase" do
+  context "# Por 100g o 100ml de producto" do
     before :each do
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     end
@@ -106,24 +106,6 @@ RSpec.describe Etiqueta do
     it " * Valor energético en kcal/g por porción de 100g o 100ml" do
       expect(@apple.valor_energetico_kcal_cien).to eq(1.8888)
     end
-    it " * Ingesta de referencia de la porción en kJ/g por porción de 100g o 100ml" do
-      expect(@apple.ir_kj_cien).to eq(0.0005058928571428572)
-    end
-    it " * Ingesta de referencia de la porción en kcal/g por porción de 100g o 100ml" do
-      expect(@apple.ir_kcal_cien).to eq(0.0009444)
-    end
-    it " * Valor energético en kJ/g" do
-      expect(@apple.valor_energetico_kj).to eq(424.95)
-    end
-    it " * Valor energético en kcal/g" do
-      expect(@apple.valor_energetico_kcal).to eq(188.88)
-    end
-    it " * Ingesta de referencia de la porción en kJ/g" do
-      expect(@apple.ir_kj).to eq(0.05058928571428571)
-    end
-    it " * Ingesta de referencia de la porción en kcal/g" do
-      expect(@apple.ir_kcal).to eq(0.09444)
-    end
     it " * Grasas totales por porción de 100g o 100ml" do
       expect(@apple.grasas_cien).to eq(0.0072)
     end
@@ -132,6 +114,9 @@ RSpec.describe Etiqueta do
     end
     it " * Grasas monoinsaturadas por porción de 100g o 100ml" do
       expect(@apple.grasas_mono_cien).to eq(0.003)
+    end
+    it " * Grasas poliinsaturadas por porción de 100g o 100ml" do
+      expect(@apple.grasas_poli_cien).to eq(0.0021)
     end
     it " * Grasas poliinsaturadas por porción de 100g o 100ml" do
       expect(@apple.grasas_poli_cien).to eq(0.0021)
