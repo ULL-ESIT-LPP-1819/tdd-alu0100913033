@@ -95,5 +95,14 @@ RSpec.describe Etiqueta do
 
   end # context
 
+  context "# Algunas funciones de clase" do
+    before :each do
+      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+    end
+    it " * Valor energético en kJ/g" do
+      expect(@apple.valor_energetico_kj).to eq(424.95)
+    end
+
+  end # context
 
 end # RSpec.describe Etiqueta
