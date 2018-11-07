@@ -95,86 +95,86 @@ RSpec.describe Etiqueta do
 
   end # context
 
-  context "# Por 100g o 100ml de producto" do
+  context "# \"Por 100g o 100ml de producto\" devuelve valores correctos" do
     before :each do
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     end
 
-    it " * Valor energético en kJ/g por porción de 100g o 100ml" do
+    it " * Valor energético en kJ/g por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.valor_energetico_kj)).to eq(212.475)
     end
-    it " * Valor energético en kcal/g por porción de 100g o 100ml" do
+    it " * Valor energético en kcal/g por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.valor_energetico_kcal)).to eq(50.1)
     end
-    it " * Grasas totales por porción de 100g o 100ml" do
+    it " * Grasas totales por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.grasas)).to eq(0.36)
     end
-    it " * Grasas saturadas por porción de 100g o 100ml" do
+    it " * Grasas saturadas por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.grasas_sat)).to eq(0.06)
     end
-    it " * Grasas monoinsaturadas por porción de 100g o 100ml" do
+    it " * Grasas monoinsaturadas por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.grasas_mono)).to eq(0.15)
     end
-    it " * Grasas poliinsaturadas por porción de 100g o 100ml" do
+    it " * Grasas poliinsaturadas por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.grasas_poli)).to eq(0.105)
     end
-    it " * Hidratos de carbono por porción de 100g o 100ml" do
+    it " * Hidratos de carbono por porción de 100g o 100m correctol" do
       expect(@apple.cien(@apple.hidratos)).to eq(11.4)
     end
-    it " * Azúcares por porción de 100g o 100ml" do
+    it " * Azúcares por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.azucares)).to eq(10.31)
     end
-    it " * Polialcoholes por porción de 100g o 100ml" do
+    it " * Polialcoholes por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.polialcoholes)).to eq(1.39)
     end
-    it " * Almidón por porción de 100g o 100ml" do
+    it " * Almidón por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.almidon)).to eq(0.0)
     end
-    it " * Fibra alimentaria por porción de 100g o 100ml" do
+    it " * Fibra alimentaria por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.fibra)).to eq(2.02)
     end
-    it " * Proteínas por porción de 100g o 100ml" do
+    it " * Proteínas por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.proteinas)).to eq(0.315)
     end
-    it " * Sal por porción de 100g o 100ml" do
+    it " * Sal por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.sal)).to eq(1.2)
     end
-    it " * Vitaminas por porción de 100g o 100ml" do
+    it " * Vitaminas por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.vitaminas)).to eq(0.03641)
     end
-    it " * Minerales por porción de 100g o 100ml" do
+    it " * Minerales por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.minerales)).to eq(0.14459)
     end
 
   end # context
 
-  context "# IR (Por 100g o 100ml de producto)" do
+  context "# IR + IR(Por 100g o 100ml de producto)" do
     before :each do
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     end
 
-    it " * IR - Valor energético en kJ/g por porción de 100g o 100ml" do
+    it " * IR - Valor energético en kJ/g por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("julios"))).to eq(2.5294642857142855)
     end
-    it " * IR - Valor energético en kcal/g por porción de 100g o 100ml" do
+    it " * IR - Valor energético en kcal/g por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("calorias"))).to eq(2.505)
     end
-    it " * IR - Grasas por porción de 100g o 100ml" do
+    it " * IR - Grasas por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("grasas"))).to eq(0.5142857142857142)
     end
-    it " * IR - Ácidos por porción de 100g o 100ml" do
+    it " * IR - Ácidos por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("ácidos"))).to eq(0.3)
     end
-    it " * IR - Hidratos por porción de 100g o 100ml" do
+    it " * IR - Hidratos por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("hidratos"))).to eq(4.384615384615385)
     end
-    it " * IR - Azúcares por porción de 100g o 100ml" do
+    it " * IR - Azúcares por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("azúcares"))).to eq(11.455555555555556)
     end
-    it " * IR - Proteínas por porción de 100g o 100ml" do
+    it " * IR - Proteínas por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("proteínas"))).to eq(0.63)
     end
-    it " * IR - Sal por porción de 100g o 100ml" do
+    it " * IR - Sal por porción de 100g o 100ml correcto" do
       expect(@apple.cien(@apple.ir_("sal"))).to eq(20.0)
     end
 
