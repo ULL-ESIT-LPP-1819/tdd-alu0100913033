@@ -165,6 +165,9 @@ RSpec.describe Etiqueta do
     it " * IR - Ácidos por porción de 100g o 100ml" do
       expect(@apple.cien(@apple.ir_("ácidos"))).to eq(0.3)
     end
+    it " * IR - Hidratos por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.ir_("hidratos"))).to eq(4.384615384615385)
+    end
 
 
   end # context

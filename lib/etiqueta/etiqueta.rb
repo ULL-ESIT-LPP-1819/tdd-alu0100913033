@@ -53,6 +53,10 @@ module Etiqueta
         total = (@grasas_sat * 100 ) / 20
       end
 
+      if valor == "hidratos"
+        total = (@hidratos * 100 ) / 260
+      end
+
       total
     end
 
