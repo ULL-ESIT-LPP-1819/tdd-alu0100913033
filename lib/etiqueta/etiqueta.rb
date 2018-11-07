@@ -54,6 +54,10 @@ module Etiqueta
       self.valor_energetico_kcal / 2000
     end
 
+    def cien(value)
+      value / 100
+    end
+
 
     def grasas_cien
       @grasas / 100

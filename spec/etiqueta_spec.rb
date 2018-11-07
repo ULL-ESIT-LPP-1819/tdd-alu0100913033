@@ -121,6 +121,10 @@ RSpec.describe Etiqueta do
     it " * Grasas poliinsaturadas por porción de 100g o 100ml" do
       expect(@apple.grasas_poli_cien).to eq(0.0021)
     end
+    it " * Hidratos de carbono por porción de 100g o 100ml" do
+      expect(@apple.grasas_poli_cien).to eq(0.0021)
+    end
+
 
 
 
