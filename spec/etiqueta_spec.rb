@@ -127,6 +127,9 @@ RSpec.describe Etiqueta do
     it " * Polialcoholes por porción de 100g o 100ml" do
       expect(@apple.cien(@apple.polialcoholes)).to eq(0.0278)
     end
+    it " * Almidón por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.almidon)).to eq(0.0)
+    end
 
 
 
