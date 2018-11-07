@@ -130,6 +130,12 @@ RSpec.describe Etiqueta do
     it " * Almidón por porción de 100g o 100ml" do
       expect(@apple.cien(@apple.almidon)).to eq(0.0)
     end
+    it " * Fibra alimentaria por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.fibra)).to eq(0.0404)
+    end
+    it " * Proteínas por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.proteinas)).to eq(0.0063)
+    end
 
 
 
