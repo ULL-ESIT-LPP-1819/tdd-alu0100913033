@@ -56,6 +56,9 @@ module Etiqueta
       if valor == "hidratos"
         total = (@hidratos * 100 ) / 260
       end
+      if valor == "azúcares"
+        total = (@azucares * 100 ) / 90
+      end
 
       total
     end
