@@ -20,23 +20,11 @@ module Etiqueta
       @sal = sal
     end
 
-
-
-    def valor_energetico_kj_cien
-      cien(self.valor_energetico_kj)
+    def cien(value)
+      (value * 100) / @cantidad
     end
 
-    def valor_energetico_kcal_cien
-       cien(self.valor_energetico_kcal)
-    end
 
-    def ir_kj_cien
-      self.valor_energetico_kj_cien / 8400
-    end
-
-    def ir_kcal_cien
-      self.valor_energetico_kcal_cien / 2000
-    end
 
     def valor_energetico_kj
       @grasas*37 + (@hidratos + @proteinas)*17
@@ -46,27 +34,27 @@ module Etiqueta
       @grasas*9 + (@hidratos + @proteinas)*4
     end
 
-    def ir_kj
-      self.valor_energetico_kj / 8400
-    end
-
-    def ir_kcal
-      self.valor_energetico_kcal / 2000
-    end
 
     def ir_(valor)
-      if valor == "valor_energetico_kj"
-        valor_energetico_kj / 8400
+      total = 0.0
+      if valor == "julios"
+        total = (self.valor_energetico_kj * 100) / 8400
       end
 
+      if valor == "calorias"
+        total = (self.valor_energetico_kcal * 100) / 2000
+      end
+
+      if valor == "grasas"
+        total = (@grasas * 100 ) / 70
+      end
+      total
     end
 
 
 
 
-    def cien(value)
-      (value * 100 ) / @cantidad
-    end
+
 
 
 

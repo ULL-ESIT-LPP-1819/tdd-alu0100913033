@@ -101,10 +101,10 @@ RSpec.describe Etiqueta do
     end
 
     it " * Valor energético en kJ/g por porción de 100g o 100ml" do
-      expect(@apple.valor_energetico_kj_cien).to eq(212.475)
+      expect(@apple.cien(@apple.valor_energetico_kj)).to eq(212.475)
     end
     it " * Valor energético en kcal/g por porción de 100g o 100ml" do
-      expect(@apple.valor_energetico_kcal_cien).to eq(50.1)
+      expect(@apple.cien(@apple.valor_energetico_kcal)).to eq(50.1)
     end
     it " * Grasas totales por porción de 100g o 100ml" do
       expect(@apple.cien(@apple.grasas)).to eq(0.36)
@@ -154,7 +154,13 @@ RSpec.describe Etiqueta do
     end
 
     it " * IR - Valor energético en kJ/g por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.ir_("valor_energetico_kj"))).to eq(0.025294642857142856)
+      expect(@apple.cien(@apple.ir_("julios"))).to eq(2.5294642857142855)
+    end
+    it " * IR - Valor energético en kcal/g por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.ir_("calorias"))).to eq(2.505)
+    end
+    it " * IR - Grasas por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.ir_("grasas"))).to eq(0.5142857142857142)
     end
 
 
