@@ -139,6 +139,9 @@ RSpec.describe Etiqueta do
     it " * Sal por porción de 100g o 100ml" do
       expect(@apple.cien(@apple.sal)).to eq(0.024)
     end
+    it " * Vitaminas por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.vitaminas)).to eq(0.7282)
+    end
 
 
 
