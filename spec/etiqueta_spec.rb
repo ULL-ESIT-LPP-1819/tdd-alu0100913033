@@ -107,22 +107,19 @@ RSpec.describe Etiqueta do
       expect(@apple.valor_energetico_kcal_cien).to eq(1.8888)
     end
     it " * Grasas totales por porción de 100g o 100ml" do
-      expect(@apple.grasas_cien).to eq(0.0072)
+      expect(@apple.cien(@apple.grasas)).to eq(0.0072)
     end
     it " * Grasas saturadas por porción de 100g o 100ml" do
-      expect(@apple.grasas_sat_cien).to eq(0.0012)
+      expect(@apple.cien(@apple.grasas_sat)).to eq(0.0012)
     end
     it " * Grasas monoinsaturadas por porción de 100g o 100ml" do
-      expect(@apple.grasas_mono_cien).to eq(0.003)
+      expect(@apple.cien(@apple.grasas_mono)).to eq(0.003)
     end
     it " * Grasas poliinsaturadas por porción de 100g o 100ml" do
-      expect(@apple.grasas_poli_cien).to eq(0.0021)
-    end
-    it " * Grasas poliinsaturadas por porción de 100g o 100ml" do
-      expect(@apple.grasas_poli_cien).to eq(0.0021)
+      expect(@apple.cien(@apple.grasas_poli)).to eq(0.0021)
     end
     it " * Hidratos de carbono por porción de 100g o 100ml" do
-      expect(@apple.grasas_poli_cien).to eq(0.0021)
+      expect(@apple.cien(@apple.hidratos)).to eq(0.228)
     end
 
 

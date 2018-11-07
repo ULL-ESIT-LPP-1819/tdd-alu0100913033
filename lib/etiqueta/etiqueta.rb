@@ -23,11 +23,11 @@ module Etiqueta
 
 
     def valor_energetico_kj_cien
-      self.valor_energetico_kj / 100
+      cien(self.valor_energetico_kj)
     end
 
     def valor_energetico_kcal_cien
-      self.valor_energetico_kcal / 100
+       cien(self.valor_energetico_kcal)
     end
 
     def ir_kj_cien
@@ -58,22 +58,6 @@ module Etiqueta
       value / 100
     end
 
-
-    def grasas_cien
-      @grasas / 100
-    end
-
-    def grasas_sat_cien
-      @grasas_sat / 100
-    end
-
-    def grasas_mono_cien
-      @grasas_mono / 100
-    end
-
-    def grasas_poli_cien
-      @grasas_poli / 100
-    end
 
 
 
