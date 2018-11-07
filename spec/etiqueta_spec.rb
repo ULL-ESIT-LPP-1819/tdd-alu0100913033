@@ -101,59 +101,62 @@ RSpec.describe Etiqueta do
     end
 
     it " * Valor energético en kJ/g por porción de 100g o 100ml" do
-      expect(@apple.valor_energetico_kj_cien).to eq(4.2495)
+      expect(@apple.valor_energetico_kj_cien).to eq(212.475)
     end
     it " * Valor energético en kcal/g por porción de 100g o 100ml" do
-      expect(@apple.valor_energetico_kcal_cien).to eq(1.8888)
+      expect(@apple.valor_energetico_kcal_cien).to eq(50.1)
     end
     it " * Grasas totales por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.grasas)).to eq(0.0072)
+      expect(@apple.cien(@apple.grasas)).to eq(0.36)
     end
     it " * Grasas saturadas por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.grasas_sat)).to eq(0.0012)
+      expect(@apple.cien(@apple.grasas_sat)).to eq(0.06)
     end
     it " * Grasas monoinsaturadas por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.grasas_mono)).to eq(0.003)
+      expect(@apple.cien(@apple.grasas_mono)).to eq(0.15)
     end
     it " * Grasas poliinsaturadas por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.grasas_poli)).to eq(0.0021)
+      expect(@apple.cien(@apple.grasas_poli)).to eq(0.105)
     end
     it " * Hidratos de carbono por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.hidratos)).to eq(0.228)
+      expect(@apple.cien(@apple.hidratos)).to eq(11.4)
     end
     it " * Azúcares por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.azucares)).to eq(0.20620000000000002)
+      expect(@apple.cien(@apple.azucares)).to eq(10.31)
     end
     it " * Polialcoholes por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.polialcoholes)).to eq(0.0278)
+      expect(@apple.cien(@apple.polialcoholes)).to eq(1.39)
     end
     it " * Almidón por porción de 100g o 100ml" do
       expect(@apple.cien(@apple.almidon)).to eq(0.0)
     end
     it " * Fibra alimentaria por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.fibra)).to eq(0.0404)
+      expect(@apple.cien(@apple.fibra)).to eq(2.02)
     end
     it " * Proteínas por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.proteinas)).to eq(0.0063)
+      expect(@apple.cien(@apple.proteinas)).to eq(0.315)
     end
     it " * Sal por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.sal)).to eq(0.024)
+      expect(@apple.cien(@apple.sal)).to eq(1.2)
     end
     it " * Vitaminas por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.vitaminas)).to eq(0.7282)
+      expect(@apple.cien(@apple.vitaminas)).to eq(36.41)
     end
     it " * Minerales por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.minerales)).to eq(2.8918)
+      expect(@apple.cien(@apple.minerales)).to eq(144.59)
     end
 
+  end # context
 
+  context "# IR (Por 100g o 100ml de producto)" do
+    before :each do
+      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+    end
 
+    it " * IR - Valor energético en kJ/g por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.ir_("valor_energetico_kj"))).to eq(0.025294642857142856)
+    end
 
-
-
-    #it " * Output de la etiqueta" do
-    #  expect(@apple.to_s).to eq(" ")
-    #end
 
   end # context
 

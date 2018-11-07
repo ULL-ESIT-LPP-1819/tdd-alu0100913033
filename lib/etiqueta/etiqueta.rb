@@ -43,7 +43,7 @@ module Etiqueta
     end
 
     def valor_energetico_kcal
-      @grasas*9 + (@hidratos + @hidratos)*4
+      @grasas*9 + (@hidratos + @proteinas)*4
     end
 
     def ir_kj
@@ -54,8 +54,18 @@ module Etiqueta
       self.valor_energetico_kcal / 2000
     end
 
+    def ir_(valor)
+      if valor == "valor_energetico_kj"
+        valor_energetico_kj / 8400
+      end
+
+    end
+
+
+
+
     def cien(value)
-      value / 100
+      (value * 100 ) / @cantidad
     end
 
 
