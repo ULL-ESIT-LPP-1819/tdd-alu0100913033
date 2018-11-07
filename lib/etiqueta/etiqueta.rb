@@ -48,6 +48,11 @@ module Etiqueta
       if valor == "grasas"
         total = (@grasas * 100 ) / 70
       end
+
+      if valor == "ácidos"
+        total = (@grasas_sat * 100 ) / 20
+      end
+
       total
     end
 
