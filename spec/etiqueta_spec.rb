@@ -171,7 +171,20 @@ RSpec.describe Etiqueta do
     it " * IR - Azúcares por porción de 100g o 100ml" do
       expect(@apple.cien(@apple.ir_("azúcares"))).to eq(11.455555555555556)
     end
-    
+    it " * IR - Proteínas por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.ir_("proteínas"))).to eq(0.63)
+    end
+    it " * IR - Sal por porción de 100g o 100ml" do
+      expect(@apple.cien(@apple.ir_("sal"))).to eq(20.0)
+    end
+
+  end # context
+
+  context "# Mostrar la etiqueta nutricional" do
+    before :each do
+      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+    end
+
 
 
   end # context
