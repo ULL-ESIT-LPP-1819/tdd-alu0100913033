@@ -64,12 +64,12 @@ RSpec.describe Etiqueta do
       it " * Vitaminas correctamente indicadas" do
         expect(@apple.vitaminas).not_to be_nil
         expect(@apple.vitaminas).to be >= 0
-        expect(@apple.vitaminas).to eq(72.82)
+        expect(@apple.vitaminas).to eq(0.07282)
       end
       it " * Minerales correctamente indicados" do
         expect(@apple.minerales).not_to be_nil
         expect(@apple.minerales).to be >= 0
-        expect(@apple.minerales).to eq(289.18)
+        expect(@apple.minerales).to eq(0.28918)
       end
       it " * Hidratos de carbono correctamente indicados" do
         expect(@apple.hidratos).not_to be_nil
@@ -140,10 +140,10 @@ RSpec.describe Etiqueta do
       expect(@apple.cien(@apple.sal)).to eq(1.2)
     end
     it " * Vitaminas por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.vitaminas)).to eq(36.41)
+      expect(@apple.cien(@apple.vitaminas)).to eq(0.03641)
     end
     it " * Minerales por porción de 100g o 100ml" do
-      expect(@apple.cien(@apple.minerales)).to eq(144.59)
+      expect(@apple.cien(@apple.minerales)).to eq(0.14459)
     end
 
   end # context
@@ -185,6 +185,40 @@ RSpec.describe Etiqueta do
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     end
 
+    it " * La etiqueta se muestra correctamente" do
+      expect(@apple.to_s).to eq("                          ||  Por 100g o 100 ml  ||        IR         ||     Por       ||            IR
+                          ||    de producto      || (por 100g 0 100ml ||    porción    || (por porción de #{@apple.cantidad.round(2)}
+                          ||                     ||    de producto)   ||    de #{@apple.cantidad.round(2)}   ||     g de producto)
+       __________________________________________________________________________________________________________
+        Valor energético  ||#{sprintf('      %.2f kJ', @apple.cien(@apple.valor_energetico_kj)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("julios"))).ljust(19)}||#{sprintf('   %.2f kJ', @apple.valor_energetico_kj).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("julios")).ljust(21)}
+                          ||#{sprintf('      %.2f kcal', @apple.cien(@apple.valor_energetico_kcal)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("calorias"))).ljust(19)}||#{sprintf('   %.2f kcal', @apple.valor_energetico_kcal).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("calorias")).ljust(21)}
+       __________________________________________________________________________________________________________
+        Grasas totales    ||#{sprintf('      %.2f g', @apple.cien(@apple.grasas)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("grasas"))).ljust(19)}||#{sprintf('   %.2f g', @apple.grasas).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("grasas")).ljust(21)}
+              Saturadas ->||#{sprintf('      %.2f g', @apple.cien(@apple.grasas_sat)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("ácidos"))).ljust(19)}||#{sprintf('   %.2f g', @apple.grasas_sat).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("ácidos")).ljust(21)}
+        Monoinsaturadas ->||#{sprintf('      %.2f g', @apple.cien(@apple.grasas_mono)).ljust(21)}||#{sprintf('         - ').ljust(19)}||#{sprintf('   %.2f g', @apple.grasas_mono).ljust(15)}||#{sprintf('          -').ljust(21)}
+        Poliinsaturadas ->||#{sprintf('      %.2f g', @apple.cien(@apple.grasas_poli)).ljust(21)}||#{sprintf('         - ').ljust(19)}||#{sprintf('   %.2f g', @apple.grasas_poli).ljust(15)}||#{sprintf('          -').ljust(21)}
+        __________________________________________________________________________________________________________
+        Hidratos          ||#{sprintf('      %.2f g', @apple.cien(@apple.hidratos)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("hidratos"))).ljust(19)}||#{sprintf('   %.2f g', @apple.hidratos).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("hidratos")).ljust(21)}
+               Azúcares ->||#{sprintf('      %.2f g', @apple.cien(@apple.azucares)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("azúcares"))).ljust(19)}||#{sprintf('   %.2f g', @apple.azucares).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("azúcares")).ljust(21)}
+          Polialcoholes ->||#{sprintf('      %.2f g', @apple.cien(@apple.polialcoholes)).ljust(21)}||#{sprintf('         - ').ljust(19)}||#{sprintf('   %.2f g', @apple.polialcoholes).ljust(15)}||#{sprintf('          -').ljust(21)}
+                Almidón ->||#{sprintf('      %.2f g', @apple.cien(@apple.almidon)).ljust(21)}||#{sprintf('         - ').ljust(19)}||#{sprintf('   %.2f g', @apple.almidon).ljust(15)}||#{sprintf('          -').ljust(21)}
+        __________________________________________________________________________________________________________
+        Fibra alimentaria ||#{sprintf('      %.2f g', @apple.cien(@apple.fibra)).ljust(21)}||#{sprintf('         - ').ljust(19)}||#{sprintf('   %.2f g', @apple.fibra).ljust(15)}||#{sprintf('          -').ljust(21)}
+        __________________________________________________________________________________________________________
+        Proteínas         ||#{sprintf('      %.2f g', @apple.cien(@apple.proteinas)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("proteínas"))).ljust(19)}||#{sprintf('   %.2f g', @apple.proteinas).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("proteínas")).ljust(21)}
+        __________________________________________________________________________________________________________
+        Sal               ||#{sprintf('      %.2f g', @apple.cien(@apple.sal)).ljust(21)}||#{sprintf('       %.2f %%', @apple.cien(@apple.ir_("sal"))).ljust(19)}||#{sprintf('   %.2f g', @apple.sal).ljust(15)}||#{sprintf('         %.2f %%', @apple.ir_("sal")).ljust(21)}
+
+
+                                                      VITAMINAS Y MINERALES
+        __________________________________________________________________________________________________________
+        Vitaminas         ||#{sprintf('      %.2f mg', (@apple.cien(@apple.vitaminas))*1000).ljust(21)}||#{sprintf('         - ').ljust(19)}||#{sprintf('   %.2f mg', @apple.vitaminas * 1000).ljust(15)}||#{sprintf('          -').ljust(21)}
+        minerales         ||#{sprintf('      %.2f mg', (@apple.cien(@apple.minerales))*1000).ljust(21)}||#{sprintf('         - ').ljust(19)}||#{sprintf('   %.2f mg', @apple.minerales * 1000).ljust(15)}||#{sprintf('          -').ljust(21)}
+
+
+  ")
+      @apple.to_s
+    end
 
 
   end # context
