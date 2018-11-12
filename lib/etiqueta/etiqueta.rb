@@ -128,6 +128,24 @@ module Etiqueta
     def remove_head
       self.next = nil
     end
+
+    def remove_tail
+      self.prev = nil
+    end
+
+    def gettail
+      if prev == nil
+        value
+      else
+        prev.gettail
+      end
+    end
+
   end
+
+
+
+
+
 
 end

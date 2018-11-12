@@ -227,6 +227,7 @@ RSpec.describe Etiqueta do
     before :each do
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
       @apple2 = Etiqueta::Etiqueta.new("manzana", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
+      @apple3 = Etiqueta::Etiqueta.new("manzana", 189.1, 0.69, 0.11, 0.27, 0.20, 2.76, 0.0, 4.02, 72.79, 288.82, 21.99, 20.4, 0.61, 2.2)
       @node = Etiqueta::Node.new(@apple, nil, nil)
     end
 
@@ -235,18 +236,35 @@ RSpec.describe Etiqueta do
     end
 
     it " * Insertar un nuevo nodo en el HEAD" do
-      @node.insert_head(@apple2)
-      expect(@node[1].value).to eq(@apple2)
+      @node.insert_head(@apple2)              # [manzana1, manzana2]
+      expect(@node[1].value).to eq(@apple2)   #     0         1
     end
 
     it " * Insertar un nuevo nodo en el TAIL" do
-      @node.insert_tail(@apple2)
-      expect(@node[-1].value).to eq(@apple2)
+      @node.insert_tail(@apple3)              #[manzana3, manzana1, manzana2]
+      expect(@node[-1].value).to eq(@apple3)  #   -1        0         1
     end
 
     it " * Eliminación de un nodo del HEAD" do
-      @node.remove_head
-      expect(@node.next).to eq(nil)
+      @node.remove_head                       #[manzana3, manzana1]
+      expect(@node.next).to eq(nil)           #   -1        0
+    end
+
+    it " * Eliminación de un nodo en el TAIL" do
+      @node.remove_tail                       # [manzana]
+      expect(@node.prev).to eq(nil)           #     0
+    end
+
+    before :each do
+      # [manzana3, manzana, manzana2, manzana3, manzana]
+      @node.insert_head(@apple2)
+      @node.insert_head(@apple3)
+      @node.insert_head(@apple)
+      @node.insert_tail(@apple3)
+    end
+
+    it " * Obtención del TAIL correcta" do
+      expect(@node.gettail).to eq(@apple3)
     end
 
   end # context
