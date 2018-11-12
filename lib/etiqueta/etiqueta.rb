@@ -134,10 +134,18 @@ module Etiqueta
     end
 
     def gettail
-      if prev == nil
-        value
+      if self.prev == nil
+        self.value
       else
-        prev.gettail
+        self.prev.gettail
+      end
+    end
+
+    def gethead
+      if self.next == nil
+        self.value
+      else
+        self.next.gethead
       end
     end
 

@@ -267,6 +267,10 @@ RSpec.describe Etiqueta do
       expect(@node.gettail).to eq(@apple3)
     end
 
+    it " * Obtención del HEAD correcta" do
+      expect(@node.gethead).to eq(@apple)
+    end
+
   end # context
 
 
