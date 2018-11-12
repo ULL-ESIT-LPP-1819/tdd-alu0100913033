@@ -116,8 +116,13 @@ module Etiqueta
 
   Node = Struct.new(:value, :next, :prev) do
     def insert_head(value)
-      new_node = Node.new(value, nil, self.value)
-      self.next = new_node
+      next_node = Node.new(value, nil, self.value)
+      self.next = next_node
+    end
+
+    def insert_tail(value)
+      prev_node = Node.new(value, self.value, nil)
+      self.prev = prev_node
     end
   end
 

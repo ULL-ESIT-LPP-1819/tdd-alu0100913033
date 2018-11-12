@@ -237,7 +237,11 @@ RSpec.describe Etiqueta do
     it " * Insertar un nuevo nodo en el HEAD" do
       @node.insert_head(@apple2)
       expect(@node[1].value).to eq(@apple2)
+    end
 
+    it " * Insertar un nuevo nodo en el TAIL" do
+      @node.insert_tail(@apple2)
+      expect(@node[-1].value).to eq(@apple2)
     end
 
 
