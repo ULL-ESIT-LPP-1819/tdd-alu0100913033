@@ -223,5 +223,19 @@ RSpec.describe Etiqueta do
 
   end # context
 
+  context "# Práctica#07: POO y dll" do
+    before :each do
+      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+      @node = Etiqueta::Node.new(@apple, nil, nil)
+    end
+
+    it " * Se introduce el valor del nodo correctamente" do
+      expect(@node.value).to eq(@apple)
+    end
+
+
+  end # context
+
+
 
 end # RSpec.describe Etiqueta

@@ -112,14 +112,10 @@ module Etiqueta
       total
     end
 
+  end
 
-
-
-
-
-
-
-
+  Node = Struct.new(:value, :next, :prev) do
+    
   end
 
 end
