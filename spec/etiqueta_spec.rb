@@ -244,6 +244,10 @@ RSpec.describe Etiqueta do
       expect(@node[-1].value).to eq(@apple2)
     end
 
+    it " * Eliminación de un nodo del HEAD" do
+      @node.remove_head
+      expect(@node.next).to eq(nil)
+    end
 
   end # context
 

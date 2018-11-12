@@ -124,6 +124,10 @@ module Etiqueta
       prev_node = Node.new(value, self.value, nil)
       self.prev = prev_node
     end
+
+    def remove_head
+      self.next = nil
+    end
   end
 
 end
