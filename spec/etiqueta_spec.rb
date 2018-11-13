@@ -276,7 +276,9 @@ RSpec.describe Etiqueta do
       expect(@node.to_s).to eq("[2.2, 2.4, 2.5, 2.2, 2.4]")
     end
 
-    
+    it " * Mostrar el DLL inversamente" do
+      expect(@node.to_s_reverse).to eq("[2.4, 2.2, 2.5, 2.4, 2.2]")
+    end
 
   end # context
 

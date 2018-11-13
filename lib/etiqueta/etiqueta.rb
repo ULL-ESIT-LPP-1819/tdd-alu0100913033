@@ -114,7 +114,15 @@ module Etiqueta
 
   end
 
+
+
+######### LPP - Práctica #7 - POO #########
+
   Node = Struct.new(:value, :next, :prev) do
+
+    #######################################
+    ######### Inserciones varias ##########
+    #######################################
     def insert_head(value)
       next_node = Node.new(value, nil, self.gethead)
       self.gethead.next = next_node
@@ -125,6 +133,9 @@ module Etiqueta
       self.gettail.prev = prev_node
     end
 
+    #######################################
+    ############## Capar DDL## ############
+    #######################################
     def remove_head
       self.next = nil
     end
@@ -133,6 +144,9 @@ module Etiqueta
       self.prev = nil
     end
 
+    #######################################
+    ######### Obtener TAIL y HEAD #########
+    #######################################
     def gettail
       if self.prev == nil
         self
@@ -149,6 +163,9 @@ module Etiqueta
       end
     end
 
+    #######################################
+    ########### Mostrar el DLL ############
+    #######################################
     def to_s
       @@out = "["
       if (self == self.gettail)
@@ -171,12 +188,31 @@ module Etiqueta
 
     end
 
+    #######################################
+    ####### Mostrar el DLL al revés #######
+    #######################################
 
+    def to_s_reverse
+      @@out = "["
+      if (self == self.gethead)
+        self.display_reverse
+      else
+        self.gethead.display_reverse
+      end
+      @@out+= "]"
+    end
 
+    def display_reverse
+      @@out+="#{self.value.sal}"
+      if self.prev != nil
+        @@out+=", "
+        self.prev.display_reverse
+      end
+
+      "#{@@out}"
+    end
 
   end
-
-
 
 
 
