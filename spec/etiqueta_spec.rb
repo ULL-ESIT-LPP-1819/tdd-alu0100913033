@@ -226,8 +226,8 @@ RSpec.describe Etiqueta do
   context "# Práctica#07: POO y dll" do
     before :each do
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
-      @apple2 = Etiqueta::Etiqueta.new("manzana", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
-      @apple3 = Etiqueta::Etiqueta.new("manzana", 189.1, 0.69, 0.11, 0.27, 0.20, 2.76, 0.0, 4.02, 72.79, 288.82, 21.99, 20.4, 0.61, 2.2)
+      @apple2 = Etiqueta::Etiqueta.new("manzana2", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
+      @apple3 = Etiqueta::Etiqueta.new("manzana3", 189.1, 0.69, 0.11, 0.27, 0.20, 2.76, 0.0, 4.02, 72.79, 288.82, 21.99, 20.4, 0.61, 2.2)
       @node = Etiqueta::Node.new(@apple, nil, nil)
     end
 
@@ -263,13 +263,20 @@ RSpec.describe Etiqueta do
       @node.insert_tail(@apple3)
     end
 
+
     it " * Obtención del TAIL correcta" do
-      expect(@node.gettail).to eq(@apple3)
+      expect(@node.gettail.value).to eq(@apple3)
     end
 
     it " * Obtención del HEAD correcta" do
-      expect(@node.gethead).to eq(@apple)
+      expect(@node.gethead.value).to eq(@apple)
     end
+
+    it " * La DLL se muestra correctamente" do
+      expect(@node.to_s).to eq("[2.2, 2.4, 2.5, 2.2, 2.4]")
+    end
+
+    
 
   end # context
 

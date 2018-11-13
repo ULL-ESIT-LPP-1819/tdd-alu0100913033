@@ -116,13 +116,13 @@ module Etiqueta
 
   Node = Struct.new(:value, :next, :prev) do
     def insert_head(value)
-      next_node = Node.new(value, nil, self.value)
-      self.next = next_node
+      next_node = Node.new(value, nil, self.gethead)
+      self.gethead.next = next_node
     end
 
     def insert_tail(value)
-      prev_node = Node.new(value, self.value, nil)
-      self.prev = prev_node
+      prev_node = Node.new(value, self.gettail, nil)
+      self.gettail.prev = prev_node
     end
 
     def remove_head
@@ -135,7 +135,7 @@ module Etiqueta
 
     def gettail
       if self.prev == nil
-        self.value
+        self
       else
         self.prev.gettail
       end
@@ -143,11 +143,36 @@ module Etiqueta
 
     def gethead
       if self.next == nil
-        self.value
+        self
       else
         self.next.gethead
       end
     end
+
+    def to_s
+      @@out = "["
+      if (self == self.gettail)
+        self.display
+      else
+        self.gettail.display
+      end
+      @@out+="]"
+    end
+
+    def display
+
+      @@out+="#{self.value.sal}"
+      if self.next != nil
+        @@out+=", "
+        self.next.display
+      end
+
+      "#{@@out}"
+
+    end
+
+
+
 
   end
 
