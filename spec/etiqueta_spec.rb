@@ -231,6 +231,12 @@ RSpec.describe Etiqueta do
       @node = Etiqueta::Node.new(@apple, nil, nil)
     end
 
+
+    it " * Nodo vacío creado correctamente" do
+      @node_empty = Etiqueta::Node.new(nil, nil, nil)
+      expect(@node_empty.empty?).to eq(true)
+    end
+
     it " * Se introduce el valor del nodo correctamente" do
       expect(@node.value).to eq(@apple)
     end
@@ -279,6 +285,12 @@ RSpec.describe Etiqueta do
     it " * Mostrar el DLL inversamente" do
       expect(@node.to_s_reverse).to eq("[2.4, 2.2, 2.5, 2.4, 2.2]")
     end
+
+    #it " * Ordenador la lista" do
+    #  @node.sort_by { |x| @node.value.sal}
+    #  expect(@node.to_s).to eq("[2.2, 2.4, 2.5, 2.2, 2.4]")
+    #end
+
 
   end # context
 

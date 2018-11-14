@@ -115,8 +115,9 @@ module Etiqueta
   end
 
 
-
-######### LPP - Práctica #7 - POO #########
+##############################################################################
+###################### LPP - Práctica #7 - POO ###############################
+##############################################################################
 
   Node = Struct.new(:value, :next, :prev) do
 
@@ -212,9 +213,22 @@ module Etiqueta
       "#{@@out}"
     end
 
+
+    #######################################
+    ####### Mostrar el DLL al revés #######
+    #######################################
+    def empty?
+      if self.value == nil
+        return true
+      else
+         return false
+      end
+    end
+
   end
 
 
 
 
-end
+
+end # fin de module
