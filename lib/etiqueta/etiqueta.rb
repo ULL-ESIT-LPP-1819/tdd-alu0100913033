@@ -219,9 +219,9 @@ module Etiqueta
     #######################################
     def empty?
       if self.value == nil
-        return true
+        true
       else
-         return false
+        false
       end
     end
 

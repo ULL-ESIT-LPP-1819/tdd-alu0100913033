@@ -287,7 +287,7 @@ RSpec.describe Etiqueta do
     end
 
     #it " * Ordenador la lista" do
-    #  @node.sort_by { |x| @node.value.sal}
+    #  @node.sort_by { |x, y| x.value,sal <=> y.value.sal}
     #  expect(@node.to_s).to eq("[2.2, 2.4, 2.5, 2.2, 2.4]")
     #end
 
