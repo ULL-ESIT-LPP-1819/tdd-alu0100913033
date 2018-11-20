@@ -1,8 +1,12 @@
+require 'etiqueta.rb'
 module Persona
+  include Etiqueta
   attr_reader :nombre, :edad, :sexo, :tratamiento
-  class Persona
-    def initialize(nombre, edad, sexo, tratamiento)
+  class Persona < Node
+
+    def initialize(nombre, edad, sexo, tratamiento, lista_alimentos = Etiqueta::Node)
       @nombre, @edad, @sexo = nombre, edad, sexo
+      @lista_alimentos = lista_alimentos
     end
 
     def to_s
@@ -22,8 +26,8 @@ module Persona
     attr_reader :peso, :talla, :sexo, :cintura, :cadera
 
       ##Constructor##
-      def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento)
-        super(nombre, edad, sexo, tratamiento)
+      def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento, lista_alimentos = Etiqueta::Node)
+        super(nombre, edad, sexo, tratamiento, lista_alimentos)
         @peso = peso
         @talla = talla
         @cintura = cintura
