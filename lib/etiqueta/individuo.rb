@@ -18,7 +18,7 @@ module Persona
 
 
 
-  class ValoracionNutricional < Persona
+  class DatosAntropometricos < Persona
     attr_reader :peso, :talla, :sexo, :cintura, :cadera
 
       ##Constructor##
@@ -102,7 +102,7 @@ module Persona
 
 
 
-  end # class ValoracionNutricional
+  end # class DatosAntropometricos
 
 
 
