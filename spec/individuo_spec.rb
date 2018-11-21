@@ -35,10 +35,18 @@ RSpec.describe Persona do
       expect(@Datos.imc).to match(/Obesidad/)
     end
 
-
-
   end # Fin de las pruebas sobre el Individuo
 
+  context "# Comprobar clase, tipo y jerarquía" do
+    it "* Persona y DatosAntropometricos son clases dentro de un módulo" do
+      expect(@Jose).to be_a_kind_of(Persona::Persona)
+      expect(@Datos).to be_a_kind_of(Persona::DatosAntropometricos)
+      expect(Persona.class).to be(Module)
+      expect(Persona::Persona.class).to be(Class)
+      expect(Persona::DatosAntropometricos.class).to be(Class)
+
+    end
+  end # Comprobar clase, tipo y jerarquía
 
 
 end # RSpec.describe Individuo
