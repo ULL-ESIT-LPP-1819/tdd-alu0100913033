@@ -106,7 +106,8 @@ module Persona
             resultado  = "rcc(Muy Alto)=#{sprintf('%.2f',rcc_value)} "
           end
         end
-        return resultado
+
+        resultado
       end
 
 

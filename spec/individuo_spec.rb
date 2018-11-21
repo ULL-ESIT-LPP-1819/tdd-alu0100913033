@@ -69,9 +69,15 @@ RSpec.describe Persona do
     it "* Lista creada correctamente" do
       expect(@Nodo.class).to eq(Etiqueta::Node)
       expect(@Nodo.to_s).to eq("[José, Camilo, Ana, Fátima, Pedro]")
+      # [0.9473, 0.9688, 0.8338, 0.8174, 0.9885]"
+      # debe ser:
+      # [0.8174,    0.8338,   0.9473,   0.9688,     0.9885]
+      # [Fátima,    Ana,      José,     Camilo,     Pedro ]
 
     end
 
+    #it "* Los individuos han sido ordenados" do
+    #end
 
   end # Lista de cinco individuos
 

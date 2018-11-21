@@ -1,5 +1,6 @@
 # Etiqueta
 Clase etiqueta que implementa la información nutricional. Se ha actualizado con los requisitos de la práctica #07.
+* Se ha actualizado con los requisitos de la práctica #8
 
 ## Contributing
 

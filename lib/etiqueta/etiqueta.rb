@@ -211,8 +211,13 @@ module Etiqueta
     end
 
     def sort_by(value)
-      
+      if (self == self.gettail)
+        self.sorting(value)
+      else
+        self.gettail.sorting(value)
+      end
     end
+
 
     #######################################
     ####### Mostrar el DLL al revés #######
