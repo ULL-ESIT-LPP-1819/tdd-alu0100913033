@@ -32,6 +32,7 @@ RSpec.describe Persona do
     end
     it " * La persona está en tratamiento para la obesidad" do
       expect(@Datos.tratamiento).to eq(1)
+      expect(@Datos.super.imc).to match("Obesidad")
     end
 
   end # Fin de las pruebas sobre el Individuo
