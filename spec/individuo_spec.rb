@@ -44,7 +44,10 @@ RSpec.describe Persona do
       expect(Persona.class).to be(Module)
       expect(Persona::Persona.class).to be(Class)
       expect(Persona::DatosAntropometricos.class).to be(Class)
-
+    end
+    it "* Jerarquía de clases correcta" do
+      expect(Persona::DatosAntropometricos.ancestors).to eq([Persona::DatosAntropometricos, Persona::Persona, Etiqueta::Node, Struct, Enumerable, Object, Kernel, BasicObject]
+)
     end
   end # Comprobar clase, tipo y jerarquía
 
