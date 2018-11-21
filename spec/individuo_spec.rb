@@ -15,15 +15,23 @@ RSpec.describe Persona do
     @node.insert_head(@apple3)
     @node.insert_head(@apple)
     @node.insert_tail(@apple3)
+
+    @Jose = Persona::Persona.new("José", 22, 1, 1, @node)
+    @Datos = Persona::DatosAntropometricos.new("José", 80, 175, 22, 1, 80.0, 85.0, 1, @node)
+
+
   end
 
   context "# Inicio de las pruebas sobre el Individuo" do
     it " * Creación de una Persona" do
       # José tiene 22 años, y es un hombre que está en tratamiento
-      Jose = Persona::Persona.new("José", 22, 1, 1, @node)
+      expect(@Jose).to be_an_instance_of(Persona::Persona)
     end
     it " * Datos Antropométricos bien instanciados" do
-      Datos = Persona::DatosAntropometricos.new("José", 80, 175, 22, 1, 80.0, 85.0, 1, @node)
+      expect(@Datos).to be_an_instance_of(Persona::DatosAntropometricos)
+    end
+    it " * La persona está en tratamiento para la obesidad" do
+      expect(@Datos.tratamiento).to eq(1)
     end
 
   end # Fin de las pruebas sobre el Individuo

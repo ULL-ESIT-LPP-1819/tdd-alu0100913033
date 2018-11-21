@@ -1,11 +1,12 @@
 require 'etiqueta.rb'
 module Persona
   include Etiqueta
-  attr_reader :nombre, :edad, :sexo, :tratamiento
   class Persona < Node
+    attr_reader :nombre, :edad, :sexo, :tratamiento, :lista_alimentos
 
     def initialize(nombre, edad, sexo, tratamiento, lista_alimentos = Etiqueta::Node)
       @nombre, @edad, @sexo = nombre, edad, sexo
+      @tratamiento = tratamiento
       @lista_alimentos = lista_alimentos
     end
 
