@@ -1,6 +1,11 @@
 require 'etiqueta.rb'
 module Persona
   include Etiqueta
+
+
+
+
+
   class Persona < Node
     attr_reader :nombre, :edad, :sexo, :tratamiento, :lista_alimentos
 
@@ -34,6 +39,7 @@ module Persona
         @cintura = cintura
         @cadera = cadera
       end
+
 
 
       def to_s
@@ -77,31 +83,32 @@ module Persona
 
         if @sexo == 0
             if rcc_value >= 0.83 && rcc_value <= 0.88
-              resultado  = "rcc   ->  Bajo"
+              resultado  = "rcc(bajo)=#{sprintf('%.2f',rcc_value)} "
             end
             if rcc_value > 0.88 && rcc_value <=0.95
-              resultado  = "rcc   ->  Moderado"
+              resultado  = "rcc(Moderado)=#{sprintf('%.2f',rcc_value)} "
             end
             if rcc_value >0.95 && rcc_value <=1.01
-              resultado  = "rcc   ->  Alto"
+              resultado  = "rcc(Alto)=#{sprintf('%.2f',rcc_value)} "
             end
             if rcc_value > 1.01
-              resultado  = "rcc   ->  Muy alto"
+              resultado  = "rcc(Muy Alto)=#{sprintf('%.2f',rcc_value)} "
             end
           end
         if @sexo == 1
           if rcc_value >= 0.72 && rcc_value <= 0.75
-            resultado  = "rcc   ->  Bajo"
+            resultado  = "rcc(bajo)=#{sprintf('%.2f',rcc_value)} "
           end
           if rcc_value > 0.78 && rcc_value <= 0.82
-            resultado  = "rcc   ->  Moderado"
+            resultado  = "rcc(Moderado)=#{sprintf('%.2f',rcc_value)} "
           end
           if rcc_value > 0.82
-            resultado  = "rcc   ->  Muy alto"
+            resultado  = "rcc(Muy Alto)=#{sprintf('%.2f',rcc_value)} "
           end
         end
         return resultado
       end
+
 
 
 

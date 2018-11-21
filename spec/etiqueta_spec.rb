@@ -279,11 +279,11 @@ RSpec.describe Etiqueta do
     end
 
     it " * La DLL se muestra correctamente" do
-      expect(@node.to_s).to eq("[2.2, 2.4, 2.5, 2.2, 2.4]")
+      expect(@node.to_s).to eq("[manzana3, manzana, manzana2, manzana3, manzana]")
     end
 
     it " * Mostrar el DLL inversamente" do
-      expect(@node.to_s_reverse).to eq("[2.4, 2.2, 2.5, 2.4, 2.2]")
+      expect(@node.to_s_reverse).to eq("[manzana, manzana3, manzana2, manzana, manzana3]")
     end
 
     #it " * Ordenador la lista" do

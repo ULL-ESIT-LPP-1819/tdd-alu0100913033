@@ -51,5 +51,29 @@ RSpec.describe Persona do
     end
   end # Comprobar clase, tipo y jerarquía
 
+  context "# Lista de cinco individuos" do
+    before :each do
+      @Datos_Jose = @Datos
+      @Nodo = Etiqueta::Node.new(@Datos_Jose, nil, nil)
+      @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @node)
+      @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @node)
+      @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @node)
+      @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @node)
+      @Nodo.insert_head(@Datos_Camilo)
+      @Nodo.insert_head(@Datos_Ana)
+      @Nodo.insert_head(@Datos_Fatima)
+      @Nodo.insert_head(@Datos_Pedro)
+      # [José, Camilo, Ana, Fátima, Pedro]
+    end
+
+    it "* Lista creada correctamente" do
+      expect(@Nodo.class).to eq(Etiqueta::Node)
+      expect(@Nodo.to_s).to eq("[José, Camilo, Ana, Fátima, Pedro]")
+
+    end
+
+
+  end # Lista de cinco individuos
+
 
 end # RSpec.describe Individuo

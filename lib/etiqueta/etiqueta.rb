@@ -65,7 +65,6 @@ module Etiqueta
     end
 
 
-
     def valor_energetico_kj
       @grasas*37 + (@hidratos + @proteinas)*17
     end
@@ -177,8 +176,7 @@ module Etiqueta
     end
 
     def display
-
-      @@out+="#{self.value.sal}"
+      @@out+="#{self.value.nombre}"
       if self.next != nil
         @@out+=", "
         self.next.display
@@ -203,7 +201,7 @@ module Etiqueta
     end
 
     def display_reverse
-      @@out+="#{self.value.sal}"
+      @@out+="#{self.value.nombre}"
       if self.prev != nil
         @@out+=", "
         self.prev.display_reverse
@@ -212,6 +210,9 @@ module Etiqueta
       "#{@@out}"
     end
 
+    def sort_by(value)
+      
+    end
 
     #######################################
     ####### Mostrar el DLL al revés #######
