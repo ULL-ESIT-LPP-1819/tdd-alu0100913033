@@ -17,7 +17,7 @@ RSpec.describe Persona do
     @node.insert_tail(@apple3)
 
     @Jose = Persona::Persona.new("José", 22, 1, 1, @node)
-    @Datos = Persona::DatosAntropometricos.new("José", 80, 175, 22, 1, 80.0, 85.0, 1, @node)
+    @Datos = Persona::DatosAntropometricos.new("José", 90, 1.65, 22, 1, 90.0, 95.0, 1, @node)
 
 
   end
@@ -32,8 +32,10 @@ RSpec.describe Persona do
     end
     it " * La persona está en tratamiento para la obesidad" do
       expect(@Datos.tratamiento).to eq(1)
-      expect(@Datos.super.imc).to match("Obesidad")
+      expect(@Datos.imc).to match(/Obesidad/)
     end
+
+
 
   end # Fin de las pruebas sobre el Individuo
 
