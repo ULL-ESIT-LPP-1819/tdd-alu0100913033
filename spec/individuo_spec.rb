@@ -90,16 +90,17 @@ RSpec.describe Persona do
     end
 
     it " -------->* Comparación < entre dos individuos" do
-      #La pera aporta menos calorías que la manzana
+      #Ana tiene menos icm que Camilo
       expect(@Datos_Ana < @Datos_Camilo).to be_truthy
     end
     it " -------->* Comparación > entre dos individuos" do
-      #La pera aporta menos calorías que la manzana
       expect(@Datos_Camilo > @Datos_Ana).to be_truthy
     end
     it " -------->* Comparación <= entre dos individuos" do
-      #La pera aporta menos calorías que la manzana
       expect(@Datos_Ana <= @Datos_Camilo).to be_truthy
+    end
+    it " -------->* Comparación >= entre dos individuos" do
+      expect(@Datos_Camilo >= @Datos_Ana).to be_truthy
     end
   end # -------->Práctica#09
 
