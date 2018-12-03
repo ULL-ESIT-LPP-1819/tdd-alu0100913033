@@ -322,6 +322,10 @@ RSpec.describe Etiqueta do
       expect(@manzana != @pera).to be_truthy
     end
 
+    it " * Comparación 'between'" do
+      expect(@pera.between?(@pera, @manzana)).to be_truthy
+    end
+
   end # Práctica#09
 
 end # RSpec.describe Etiqueta
