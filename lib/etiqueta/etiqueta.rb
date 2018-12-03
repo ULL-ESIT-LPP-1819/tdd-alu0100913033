@@ -1,7 +1,8 @@
 module Etiqueta
   class Etiqueta
+    include Comparable
     attr_reader :nombre, :cantidad, :grasas, :grasas_sat, :grasas_mono, :grasas_poli, :polialcoholes, :almidon, :fibra, :vitaminas, :minerales, :hidratos, :azucares, :proteinas, :sal
-
+    
     def initialize (nombre, cantidad, grasas, grasas_sat, grasas_mono, grasas_poli, polialcoholes, almidon, fibra, vitaminas, minerales, hidratos, azucares, proteinas, sal)
       @cantidad = cantidad
       @nombre = nombre
@@ -109,6 +110,11 @@ module Etiqueta
       end
 
       total
+    end
+
+    def <=>(other)
+      return nil unless other.instance_of? Etiqueta
+      self.valor_energetico_kj <=> other.valor_energetico_kj
     end
 
   end

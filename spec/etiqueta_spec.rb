@@ -295,9 +295,14 @@ RSpec.describe Etiqueta do
   end # context
 
   context "# Práctica#09" do
+    before :each do
+      @manzana = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+      @pera = Etiqueta::Etiqueta.new("pera", 170.0, 0.17, 0.02, 0.04, 0.07, 1.02, 0.0, 3.74, 46.49, 253.67, 18.02, 18.23, 0.73, 3.57)
+      @node = Etiqueta::Node.new(@apple, nil, nil)
+    end
 
     it " * Comparación < entre dos etiquetas" do
-      expect(@apple>@apple2).to be(true)
+      expect(@pera < @manzana).to be_truthy
     end
 
 
