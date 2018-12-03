@@ -318,6 +318,9 @@ RSpec.describe Etiqueta do
     it " * Comparación == entre dos etiquetas" do
       expect(@manzana == @manzana).to be_truthy
     end
+    it " * Comparación != entre dos etiquetas" do
+      expect(@manzana != @pera).to be_truthy
+    end
 
   end # Práctica#09
 
