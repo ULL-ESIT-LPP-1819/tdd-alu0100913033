@@ -294,6 +294,13 @@ RSpec.describe Etiqueta do
 
   end # context
 
+  context "# Práctica#09" do
 
+    it " * Comparación < entre dos etiquetas" do
+      expect(@apple>@apple2).to be(true)
+    end
+
+
+  end # Práctica#09
 
 end # RSpec.describe Etiqueta
