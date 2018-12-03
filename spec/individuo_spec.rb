@@ -108,6 +108,9 @@ RSpec.describe Persona do
     it " -------->* Comparación != entre dos individuos" do
       expect(@Datos_Camilo != @Datos_Ana).to be_truthy
     end
+    it " -------->* Comparación between" do
+      expect(@Datos_Fatima.between?(@Datos_Ana, @Datos_Camilo)).to be_truthy
+    end
   end # -------->Práctica#09
 
 
