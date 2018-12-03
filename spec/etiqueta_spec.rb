@@ -302,7 +302,11 @@ RSpec.describe Etiqueta do
     end
 
     it " * Comparación < entre dos etiquetas" do
+      #La pera aporta menos calorías que la manzana
       expect(@pera < @manzana).to be_truthy
+    end
+    it " * Comparación > entre dos etiquetas" do
+      expect(@manzana > @pera).to be_truthy
     end
 
 
