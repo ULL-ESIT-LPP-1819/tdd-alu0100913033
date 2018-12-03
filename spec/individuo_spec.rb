@@ -93,6 +93,10 @@ RSpec.describe Persona do
       #La pera aporta menos calorías que la manzana
       expect(@Datos_Ana < @Datos_Camilo).to be_truthy
     end
+    it " -------->* Comparación > entre dos individuos" do
+      #La pera aporta menos calorías que la manzana
+      expect(@Datos_Ana < @Datos_Camilo).to be_truthy
+    end
   end # -------->Práctica#09
 
 
