@@ -2,10 +2,6 @@ require 'etiqueta.rb'
 module Persona
   include Etiqueta
 
-
-
-
-
   class Persona < Node
     attr_reader :nombre, :edad, :sexo, :tratamiento, :lista_alimentos
 
@@ -29,6 +25,7 @@ module Persona
 
 
   class DatosAntropometricos < Persona
+    include Comparable
     attr_reader :peso, :talla, :sexo, :cintura, :cadera
 
       ##Constructor##
@@ -53,8 +50,12 @@ module Persona
 
       end
 
+      def get_imc
+        return @peso / ( @talla * @talla )
+      end
+
       def imc
-        imc_value = @peso / ( @talla * @talla )
+        imc_value = get_imc
 
           if imc_value < 18.5
             resultado = "Bajo peso  ->  Delgado"
@@ -78,8 +79,12 @@ module Persona
         grasa = 1.2 * @peso / ( @talla * @talla ) + 0.23 * @edad - 10.8 * @sexo - 5.4
       end
 
+      def get_rcc
+        @cintura / @cadera
+      end
+
       def rcc
-        rcc_value = @cintura / @cadera
+        rcc_value = get_rcc
 
         if @sexo == 0
             if rcc_value >= 0.83 && rcc_value <= 0.88
@@ -111,6 +116,10 @@ module Persona
       end
 
 
+      def <=>(other)
+        #return nil unless other.instance_of? Persona
+        self.get_imc <=> other.get_imc
+      end
 
 
 

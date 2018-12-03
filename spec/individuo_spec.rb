@@ -3,7 +3,7 @@ require 'etiqueta/individuo'
 
 RSpec.describe Persona do
 
-  before :each do
+  before :all do
     #Creo los alimentos
     @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     @apple2 = Etiqueta::Etiqueta.new("manzana2", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
@@ -81,6 +81,19 @@ RSpec.describe Persona do
     #end
 
   end # Lista de cinco individuos
+
+  context " # -------->Práctica#09" do
+    before :each do
+      @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @node)
+      @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @node)
+      @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @node)
+    end
+
+    it " -------->* Comparación < entre dos individuos" do
+      #La pera aporta menos calorías que la manzana
+      expect(@Datos_Ana < @Datos_Camilo).to be_truthy
+    end
+  end # -------->Práctica#09
 
 
 end # RSpec.describe Individuo
