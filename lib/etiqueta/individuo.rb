@@ -26,6 +26,7 @@ module Persona
 
   class DatosAntropometricos < Persona
     include Comparable
+    include Enumerable
     attr_reader :peso, :talla, :sexo, :cintura, :cadera
 
       ##Constructor##

@@ -1,8 +1,9 @@
 module Etiqueta
   class Etiqueta
     include Comparable
+    include Enumerable
     attr_reader :nombre, :cantidad, :grasas, :grasas_sat, :grasas_mono, :grasas_poli, :polialcoholes, :almidon, :fibra, :vitaminas, :minerales, :hidratos, :azucares, :proteinas, :sal
-    
+
     def initialize (nombre, cantidad, grasas, grasas_sat, grasas_mono, grasas_poli, polialcoholes, almidon, fibra, vitaminas, minerales, hidratos, azucares, proteinas, sal)
       @cantidad = cantidad
       @nombre = nombre
