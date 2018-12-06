@@ -1,7 +1,7 @@
 module Etiqueta
+  include Enumerable
   class Etiqueta
     include Comparable
-    include Enumerable
     attr_reader :nombre, :cantidad, :grasas, :grasas_sat, :grasas_mono, :grasas_poli, :polialcoholes, :almidon, :fibra, :vitaminas, :minerales, :hidratos, :azucares, :proteinas, :sal
 
     def initialize (nombre, cantidad, grasas, grasas_sat, grasas_mono, grasas_poli, polialcoholes, almidon, fibra, vitaminas, minerales, hidratos, azucares, proteinas, sal)
@@ -60,7 +60,13 @@ module Etiqueta
 
     end
 
+    def get_nombre
+      @nombre
+    end
 
+    def index
+      @nombre = Nombre.all
+    end
 
     def cien(value)
       (value * 100) / @cantidad
@@ -173,49 +179,24 @@ module Etiqueta
     ########### Mostrar el DLL ############
     #######################################
     def to_s
-      @@out = "["
-      if (self == self.gettail)
+      @@out = Array.new(0)
+      if (self == self.gethead)
         self.display
       else
-        self.gettail.display
+        self.gethead.display
       end
-      @@out+="]"
     end
 
     def display
-      @@out+="#{self.value.nombre}"
-      if self.next != nil
-        @@out+=", "
-        self.next.display
-      end
-
-      "#{@@out}"
-
-    end
-
-    #######################################
-    ####### Mostrar el DLL al revés #######
-    #######################################
-
-    def to_s_reverse
-      @@out = "["
-      if (self == self.gethead)
-        self.display_reverse
-      else
-        self.gethead.display_reverse
-      end
-      @@out+= "]"
-    end
-
-    def display_reverse
-      @@out+="#{self.value.nombre}"
+      @@out.insert(0, self.value.nombre)
       if self.prev != nil
-        @@out+=", "
-        self.prev.display_reverse
+        self.prev.display
       end
 
-      "#{@@out}"
+      @@out
+
     end
+
 
 
 
@@ -229,6 +210,35 @@ module Etiqueta
         false
       end
     end
+
+    def each
+      for i in self.to_s do
+        yield i
+      end
+    end
+
+
+
+
+    def get_size
+      @@size = 0
+      if self == self.gettail
+        self.getting_size
+      else
+        self.gettail.get_size
+      end
+    end
+
+
+    def getting_size
+      @@size += 1
+      if self.next == nil
+        return @@size
+      else
+        self.next.getting_size
+      end
+    end
+
 
   end
 

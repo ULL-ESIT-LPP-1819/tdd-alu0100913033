@@ -279,11 +279,11 @@ RSpec.describe Etiqueta do
     end
 
     it " * La DLL se muestra correctamente" do
-      expect(@node.to_s).to eq("[manzana3, manzana, manzana2, manzana3, manzana]")
+      expect(@node.to_s).to eq(["manzana3", "manzana", "manzana2", "manzana3", "manzana"])
     end
 
     it " * Mostrar el DLL inversamente" do
-      expect(@node.to_s_reverse).to eq("[manzana, manzana3, manzana2, manzana, manzana3]")
+      expect(@node.to_s.reverse).to eq(["manzana", "manzana3", "manzana2", "manzana", "manzana3"])
     end
 
     #it " * Ordenador la lista" do
@@ -298,7 +298,14 @@ RSpec.describe Etiqueta do
     before :each do
       @manzana = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
       @pera = Etiqueta::Etiqueta.new("pera", 170.0, 0.17, 0.02, 0.04, 0.07, 1.02, 0.0, 3.74, 46.49, 253.67, 18.02, 18.23, 0.73, 3.57)
+      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+      @apple2 = Etiqueta::Etiqueta.new("manzana2", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
+      @apple3 = Etiqueta::Etiqueta.new("manzana3", 189.1, 0.69, 0.11, 0.27, 0.20, 2.76, 0.0, 4.02, 72.79, 288.82, 21.99, 20.4, 0.61, 2.2)
       @node = Etiqueta::Node.new(@apple, nil, nil)
+      @node.insert_head(@apple2)
+      @node.insert_head(@apple3)
+      @node.insert_head(@apple)
+      @node.insert_tail(@apple3)
     end
 
     it " -------->* Comparación < entre dos etiquetas" do
@@ -324,6 +331,18 @@ RSpec.describe Etiqueta do
 
     it " -------->* Comparación 'between'" do
       expect(@pera.between?(@pera, @manzana)).to be_truthy
+    end
+
+    it " -------->* Enumerable - Collect" do
+      expect(@node.collect{ |i| i}).to eq(["manzana3", "manzana", "manzana2", "manzana3", "manzana"])
+      expect(@node.collect{ |i| i*2}).to eq(["manzana3manzana3", "manzanamanzana", "manzana2manzana2", "manzana3manzana3", "manzanamanzana"])
+      expect(@node.collect{ |i| i + "!!!"}).to eq(["manzana3!!!", "manzana!!!", "manzana2!!!", "manzana3!!!", "manzana!!!"])
+    end
+
+    it " -------->* Enumerable - Select" do
+      # No hay ninguna pera en el nodo
+      expect(@node.select{ |i| i == @pera }).to eq([])
+
     end
 
   end # Práctica#09
