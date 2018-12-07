@@ -1,6 +1,5 @@
 # @author Tomás González Martín
 module Etiqueta
-  include Enumerable
 
   # @author Tomás González Martín
   class Etiqueta
@@ -154,6 +153,7 @@ module Etiqueta
 
   # @author Tomás González Martín
   Node = Struct.new(:value, :next, :prev) do
+    include Enumerable
     #######################################
     ######### Inserciones varias ##########
     #######################################
@@ -250,8 +250,13 @@ module Etiqueta
     end
 
     def each
-      for i in self.to_s do
-        yield i
+      #for i in self.to_s do
+      #  yield i
+      #end
+      nodo = gettail
+      while nodo != nil
+          yield nodo.value
+          nodo = nodo.next
       end
     end
 
