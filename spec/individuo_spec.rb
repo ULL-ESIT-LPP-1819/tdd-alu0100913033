@@ -143,7 +143,12 @@ RSpec.describe Persona do
       expect(@Nodo.min{ |i, j| i.peso<=>j.peso}).to eq(@Datos_Ana || @Datos_Fatima)
       # El más jóven de todos es Ana
       expect(@Nodo.min{ |i, j| i.edad<=>j.edad}).to eq(@Datos_Ana)
-
+    end
+    it " -------->* Enumerable - Sort" do
+      # Ordenar por el peso
+      expect(@Nodo.sort{ |i, j| i.peso<=>j.peso}).to eq([@Datos_Ana, @Datos_Fatima, @Datos_Pedro, @Datos_Camilo, @Datos_Jose])
+      # Ordenar inversamente por peso
+      expect(@Nodo.sort{ |i, j| j.peso<=>i.peso}).to eq([@Datos_Jose, @Datos_Camilo, @Datos_Pedro, @Datos_Fatima, @Datos_Ana])
     end
   end # -------->Práctica#09
 
