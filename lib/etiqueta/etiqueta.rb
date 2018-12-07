@@ -188,7 +188,7 @@ module Etiqueta
     end
 
     def display
-      @@out.insert(0, self.value.nombre)
+      @@out.insert(0, self.value)
       if self.prev != nil
         self.prev.display
       end
@@ -216,6 +216,7 @@ module Etiqueta
         yield i
       end
     end
+
 
 
 

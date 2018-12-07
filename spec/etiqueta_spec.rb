@@ -279,11 +279,11 @@ RSpec.describe Etiqueta do
     end
 
     it " * La DLL se muestra correctamente" do
-      expect(@node.to_s).to eq(["manzana3", "manzana", "manzana2", "manzana3", "manzana"])
+      expect(@node.to_s).to eq([@apple3, @apple, @apple2, @apple3, @apple])
     end
 
     it " * Mostrar el DLL inversamente" do
-      expect(@node.to_s.reverse).to eq(["manzana", "manzana3", "manzana2", "manzana", "manzana3"])
+      expect(@node.to_s.reverse).to eq([@apple, @apple3, @apple2, @apple, @apple3])
     end
 
     #it " * Ordenador la lista" do
@@ -295,7 +295,7 @@ RSpec.describe Etiqueta do
   end # context
 
   context " # -------->Práctica#09" do
-    before :each do
+    before :all do
       @manzana = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
       @pera = Etiqueta::Etiqueta.new("pera", 170.0, 0.17, 0.02, 0.04, 0.07, 1.02, 0.0, 3.74, 46.49, 253.67, 18.02, 18.23, 0.73, 3.57)
       @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
@@ -334,15 +334,35 @@ RSpec.describe Etiqueta do
     end
 
     it " -------->* Enumerable - Collect" do
-      expect(@node.collect{ |i| i}).to eq(["manzana3", "manzana", "manzana2", "manzana3", "manzana"])
-      expect(@node.collect{ |i| i*2}).to eq(["manzana3manzana3", "manzanamanzana", "manzana2manzana2", "manzana3manzana3", "manzanamanzana"])
-      expect(@node.collect{ |i| i + "!!!"}).to eq(["manzana3!!!", "manzana!!!", "manzana2!!!", "manzana3!!!", "manzana!!!"])
+      expect(@node.collect{ |i| i.nombre}).to eq(["manzana3", "manzana", "manzana2", "manzana3", "manzana"])
+      expect(@node.collect{ |i| i.nombre*2}).to eq(["manzana3manzana3", "manzanamanzana", "manzana2manzana2", "manzana3manzana3", "manzanamanzana"])
+      expect(@node.collect{ |i| i.nombre + "!!!"}).to eq(["manzana3!!!", "manzana!!!", "manzana2!!!", "manzana3!!!", "manzana!!!"])
     end
 
     it " -------->* Enumerable - Select" do
       # No hay ninguna pera en el nodo
       expect(@node.select{ |i| i == @pera }).to eq([])
+      # Seleccionar aquellas etiquetas de tipo manzana
+      expect(@node.select{ |i| i == @apple}).to eq([@apple])
+    end
 
+    it " -------->* Enumerable - Max" do
+      #El maximo debería ser de "manzana"
+      expect(@node.max{ |i| i.sal}).to eq(@apple)
+      expect(@node.max{ |i| i.cantidad}).not_to eq(@pera)
+    end
+
+    it " -------->* Enumerable - Min" do
+      #El mínimo no debería ser de "manzana"
+      expect(@node.min{ |i| i.sal}).not_to eq(@apple)
+      expect(@node.min{ |i| i.cantidad}).to eq(@apple3)
+    end
+
+    it " -------->* Enumerable - Sort" do
+      #Ordenar por Cantidad
+      expect(@node.sort{ |i, j| i.cantidad<=>j.cantidad}).to eq([@apple3, @apple3, @apple2, @apple, @apple])
+      #Ordenar inversamente por grasas saturadas
+      expect(@node.sort{ |i, j| j.cantidad<=>i.cantidad}).to eq([@apple, @apple, @apple2, @apple3, @apple3])
     end
 
   end # Práctica#09
