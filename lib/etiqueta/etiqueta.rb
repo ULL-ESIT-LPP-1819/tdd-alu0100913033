@@ -1,9 +1,28 @@
+# @author Tomás González Martín
 module Etiqueta
   include Enumerable
+
+  # @author Tomás González Martín
   class Etiqueta
     include Comparable
     attr_reader :nombre, :cantidad, :grasas, :grasas_sat, :grasas_mono, :grasas_poli, :polialcoholes, :almidon, :fibra, :vitaminas, :minerales, :hidratos, :azucares, :proteinas, :sal
 
+    # Inicialización de la clase Etiqueta del módulo Etiqueta
+    # @param nombre [String] nombre de la etiqueta
+    # @param cantidad [Float] cantidad total del producto en gr
+    # @param grasas [Float] cantidad de grasa en gr
+    # @param grasas_sat [Float] cantidad de grasas saturadas en gr
+    # @param grasas_mono [Float] cantidad de grasas monoinsaturadas en gr
+    # @param grasas_poli [Float] cantidad de grasas poliinsaturadas en gr
+    # @param polialcoholes [Float] cantidad de polialcoholes en gr
+    # @param almodon [Float] cantidad de almidón en gr
+    # @param fibra [Float] cantidad de fibra en gr
+    # @param vitaminas [Float] cantidad de vitaminas en mgr
+    # @param minerales [Float] cantidad de minerales en mgr
+    # @param hidratos [Float] cantidad de hidratos en gr
+    # @param azucares [Float] cantidad de azúcares en gr
+    # @param proteínas [Float] cantidad de proteínas en gr
+    # @param sal [Float] cantidad de sal en gr
     def initialize (nombre, cantidad, grasas, grasas_sat, grasas_mono, grasas_poli, polialcoholes, almidon, fibra, vitaminas, minerales, hidratos, azucares, proteinas, sal)
       @cantidad = cantidad
       @nombre = nombre
@@ -23,7 +42,8 @@ module Etiqueta
     end
 
 
-
+    # Mostrar la etiqueta de manera específica
+    # @return [String] el resultado ordenado
     def to_s
 
       "                          ||  Por 100g o 100 ml  ||        IR         ||     Por       ||            IR
@@ -60,28 +80,27 @@ module Etiqueta
 
     end
 
-    def get_nombre
-      @nombre
-    end
-
-    def index
-      @nombre = Nombre.all
-    end
-
+    # Método para obtener el % de los valores
+    # @param value [Float] valor a utilizar
+    # @return [Float] la representación de ese valor sobre el producto total
     def cien(value)
       (value * 100) / @cantidad
     end
 
-
+    # Obtención del valor energético en kJ
+    # @return [Float] valor energético del producto en kJ
     def valor_energetico_kj
       @grasas*37 + (@hidratos + @proteinas)*17
     end
 
+    # Obtención del valor energético en kcal
+    # @return [Float] valor energético del producto en kcal
     def valor_energetico_kcal
       @grasas*9 + (@hidratos + @proteinas)*4
     end
 
-
+    # Obtención del IR
+    # @return [Float] IR
     def ir_(valor)
       total = 0.0
       if valor == "julios"
@@ -119,6 +138,8 @@ module Etiqueta
       total
     end
 
+    # Función de Comparable para poder comparar objetos entre sí
+    # @return [Float] comparación entre dos objetos de la clase Etiqueta
     def <=>(other)
       return nil unless other.instance_of? Etiqueta
       self.valor_energetico_kj <=> other.valor_energetico_kj
@@ -131,15 +152,20 @@ module Etiqueta
 ###################### LPP - Práctica #7 - POO ###############################
 ##############################################################################
 
+  # @author Tomás González Martín
   Node = Struct.new(:value, :next, :prev) do
     #######################################
     ######### Inserciones varias ##########
     #######################################
+    # Método de inserción por la cabeza de la dll
+    # @param value [?] valor de tipo no definido a insertar en la cabeza de la dll
     def insert_head(value)
       next_node = Node.new(value, nil, self.gethead)
       self.gethead.next = next_node
     end
 
+    # Método de inserción por la cola de la dll
+    # @param value [Object] valor de tipo no definido a insertar en la cola de la dll
     def insert_tail(value)
       prev_node = Node.new(value, self.gettail, nil)
       self.gettail.prev = prev_node
@@ -148,10 +174,12 @@ module Etiqueta
     #######################################
     ############## Capar DDL## ############
     #######################################
+    # Método de eliminación de la cabeza de la dll
     def remove_head
       self.next = nil
     end
 
+    # Método de eliminación de la cabeza de la dll
     def remove_tail
       self.prev = nil
     end
@@ -159,6 +187,8 @@ module Etiqueta
     #######################################
     ######### Obtener TAIL y HEAD #########
     #######################################
+    # Método de obtención del nodo que está presente en la cola
+    # @return [Object] valor presente en la cola
     def gettail
       if self.prev == nil
         self
@@ -167,6 +197,8 @@ module Etiqueta
       end
     end
 
+    # Método de obtención del nodo que está presente en la cabeza
+    # @return [Object] valor presente en la cabeza
     def gethead
       if self.next == nil
         self
@@ -178,6 +210,8 @@ module Etiqueta
     #######################################
     ########### Mostrar el DLL ############
     #######################################
+    # Mostrar toda la lista doblemente enlazada
+    # Pasa la tarea de muestreo al primer nodo de la cola
     def to_s
       @@out = Array.new(0)
       if (self == self.gethead)
@@ -187,6 +221,8 @@ module Etiqueta
       end
     end
 
+    # Función auxiliar al to_s, que muestra la cola de manera ordenada
+    # @return @@out [Objeto] concatena los diferentes valores a mostrar
     def display
       @@out.insert(0, self.value)
       if self.prev != nil
@@ -203,6 +239,8 @@ module Etiqueta
     #######################################
     ####### Mostrar el DLL al revés #######
     #######################################
+    # Comprueba si la lista está o no vacía
+    # @return [Bool] verdadero si está vacía, falso si no
     def empty?
       if self.value == nil
         true
@@ -218,9 +256,8 @@ module Etiqueta
     end
 
 
-
-
-
+    # Obtención del tamaño total de la DLL
+    # Usa función auxiliar "getting_size" para su cometido
     def get_size
       @@size = 0
       if self == self.gettail
@@ -230,7 +267,8 @@ module Etiqueta
       end
     end
 
-
+    # Función auxiliar para la obtención del tamaño total de la DLL
+    # @return [Interger] devuelve el tamaño total de la DLL
     def getting_size
       @@size += 1
       if self.next == nil

@@ -1,16 +1,27 @@
 require 'etiqueta.rb'
+
+# @author Tomás González Martín
 module Persona
   include Etiqueta
 
+  # @author Tomás González Martín
   class Persona < Node
     attr_reader :nombre, :edad, :sexo, :tratamiento, :lista_alimentos
 
+    # Inicialización de la clase Persona del módulo Persona
+    # @param nombre [String] contiene el nombre de la persona
+    # @param edad [Interger] edad del individuo
+    # @param sexo [Interger] 0 implica mujer y 1 implica hombre
+    # @param tratamiento [Interger] 0 implica "sin tratamiento", y 1 "en tratamiento"
+    # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
     def initialize(nombre, edad, sexo, tratamiento, lista_alimentos = Etiqueta::Node)
       @nombre, @edad, @sexo = nombre, edad, sexo
       @tratamiento = tratamiento
       @lista_alimentos = lista_alimentos
     end
 
+    # Mostrar a la persona
+    # @return [String] descripción de la persona con el uso de los atributos
     def to_s
       if (@sexo == 1) # hombre
         "Soy #{@nombre}, hombre de #{@edad} años de edad"
@@ -24,11 +35,20 @@ module Persona
 
 
 
+  # @author Tomás González Martín
   class DatosAntropometricos < Persona
     include Comparable
     attr_reader :peso, :talla, :sexo, :cintura, :cadera
 
-      ##Constructor##
+    # @param nombre [String] contiene el nombre de la persona
+    # @param peso [Float] peso total de la persona en Kg
+    # @param talla [Float] talla total de la persona en cm
+    # @param edad [Interger] edad del individuo
+    # @param sexo [Interger] 0 implica mujer y 1 implica hombre
+    # @param cintura [Float] anchura de la cintura de la persona en cm
+    # @param cadera [Float] anchura de la cadera de la persona en cm
+    # @param tratamiento [Interger] 0 implica "sin tratamiento", y 1 "en tratamiento"
+    # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
       def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento, lista_alimentos = Etiqueta::Node)
         super(nombre, edad, sexo, tratamiento, lista_alimentos)
         @peso = peso
@@ -38,7 +58,8 @@ module Persona
       end
 
 
-
+      # Mostrar los datos Antropométricos de la persona
+      # @return [String] datos de la persona
       def to_s
         resultado = "#{super} \n\n#{self.imc} \n#{self.rcc}"
         puts resultado
@@ -50,10 +71,14 @@ module Persona
 
       end
 
+      # Obtención numérica del IMC del individuo
+      # @return [Float] devuelve el IMC del individuo
       def get_imc
         @peso / ( @talla * @talla )
       end
 
+      # Obtención descriptiva del IMC del individuo
+      # @return [String] descripción del individuo en base a su IMC
       def imc
         imc_value = get_imc
 
@@ -74,15 +99,20 @@ module Persona
           return resultado
       end
 
-
+      # Calcular la cantidad total de grasa presente en la persona
+      # @return grasa [Float] grasa total
       def grasa
         grasa = 1.2 * @peso / ( @talla * @talla ) + 0.23 * @edad - 10.8 * @sexo - 5.4
       end
 
+      # Obtención numérica del RCC del individuo
+      # @return [Float] devuelve el RCC del individuo
       def get_rcc
         @cintura / @cadera
       end
 
+      # Obtención descriptiva del RCC del individuo
+      # @return [String] descripción del individuo en base a su RCC
       def rcc
         rcc_value = get_rcc
 
@@ -115,14 +145,11 @@ module Persona
         resultado
       end
 
-
+      # Función de Comparable para poder comparar objetos entre sí
+      # @return [Float] comparación entre dos objetos de la clase DatosAntropometricos
       def <=>(other)
         return nil unless other.instance_of? DatosAntropometricos
-        #if other.class == "Persona::DatosAntropometricos"
-          self.get_imc <=> other.get_imc
-        #else
-        #  self.get_imc <=> other
-        #end
+        self.get_imc <=> other.get_imc
       end
 
 
