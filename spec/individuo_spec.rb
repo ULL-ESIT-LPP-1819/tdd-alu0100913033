@@ -90,7 +90,7 @@ RSpec.describe Persona do
       @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @node)
       @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @node)
       @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @node)
-      @Datos_Nina = Persona::DatosAntropometricos.new("Nina", 52, 1.71, 19, 0, 50.2, 60.2, 0, @node)
+      @Datos_Nina = Persona::DatosAntropometricos.new("Nina", 52, 1.71, 92, 0, 50.2, 60.2, 0, @node)
       @Nodo.insert_head(@Datos_Camilo)
       @Nodo.insert_head(@Datos_Ana)
       @Nodo.insert_head(@Datos_Fatima)
@@ -133,12 +133,18 @@ RSpec.describe Persona do
       expect(@Nodo.select{ |i| i == @Datos_Jose}).to eq([@Datos_Jose])
     end
     it " -------->* Enumerable - Max" do
-      #El más pesado debería ser José
+      # El más pesado debería ser José
       expect(@Nodo.max{ |i, j| i.peso<=>j.peso}).to eq(@Datos_Jose)
-      #El más viejo es Camilo
+      # El más viejo es Camilo
       expect(@Nodo.max{ |i, j| i.edad<=>j.edad}).to eq(@Datos_Camilo)
     end
-    
+    it " -------->* Enumerable - Min" do
+      # El menos pesado debería ser Ana o Fátima
+      expect(@Nodo.min{ |i, j| i.peso<=>j.peso}).to eq(@Datos_Ana || @Datos_Fatima)
+      # El más jóven de todos es Ana
+      expect(@Nodo.min{ |i, j| i.edad<=>j.edad}).to eq(@Datos_Ana)
+
+    end
   end # -------->Práctica#09
 
 
