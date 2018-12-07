@@ -53,7 +53,7 @@ RSpec.describe Persona do
   end # Comprobar clase, tipo y jerarquía
 
   context "# Lista de cinco individuos" do
-    before :each do
+    before :all do
       @Datos_Jose = @Datos
       @Nodo = Etiqueta::Node.new(@Datos_Jose, nil, nil)
       @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @node)
@@ -84,9 +84,16 @@ RSpec.describe Persona do
 
   context " # -------->Práctica#09" do
     before :each do
+      @Datos_Jose = @Datos
+      @Nodo = Etiqueta::Node.new(@Datos_Jose, nil, nil)
       @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @node)
       @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @node)
       @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @node)
+      @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @node)
+      @Nodo.insert_head(@Datos_Camilo)
+      @Nodo.insert_head(@Datos_Ana)
+      @Nodo.insert_head(@Datos_Fatima)
+      @Nodo.insert_head(@Datos_Pedro)
     end
 
     it " -------->* Comparación < entre dos individuos" do
@@ -110,6 +117,13 @@ RSpec.describe Persona do
     end
     it " -------->* Comparación between" do
       expect(@Datos_Fatima.between?(@Datos_Ana, @Datos_Camilo)).to be_truthy
+    end
+
+
+    it " -------->* Enumerable - Collect" do
+      expect(@Nodo.collect{ |i| i.nombre}).to eq(["José", "Camilo", "Ana", "Fátima", "Pedro"])
+      expect(@Nodo.collect{ |i| i.nombre*2}).to eq(["JoséJosé", "CamiloCamilo", "AnaAna", "FátimaFátima", "PedroPedro"])
+      expect(@Nodo.collect{ |i| i.nombre + "!!!"}).to eq(["José!!!", "Camilo!!!", "Ana!!!", "Fátima!!!", "Pedro!!!"])
     end
   end # -------->Práctica#09
 
