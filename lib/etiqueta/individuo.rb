@@ -51,7 +51,7 @@ module Persona
       end
 
       def get_imc
-        return @peso / ( @talla * @talla )
+        @peso / ( @talla * @talla )
       end
 
       def imc
@@ -117,8 +117,12 @@ module Persona
 
 
       def <=>(other)
-        #return nil unless other.instance_of? Persona
-        self.get_imc <=> other.get_imc
+        return nil unless other.instance_of? DatosAntropometricos
+        #if other.class == "Persona::DatosAntropometricos"
+          self.get_imc <=> other.get_imc
+        #else
+        #  self.get_imc <=> other
+        #end
       end
 
 
