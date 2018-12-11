@@ -225,13 +225,14 @@ module Persona
       end
 
       if calorias_totales >= bajo_kcal && calorias_totales <= alto_kcal
-        return "Alimentación adecuada"
+        return "Alimentación suficiente"
       end
 
       if calorias_totales > alto_kcal
         return "Alimentación excesiva"
       end
     end
+
 
   end # class MenuDietetico
 
