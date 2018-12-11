@@ -166,17 +166,22 @@ module Persona
 
     attr_reader :datos_antropometricos, :nivel_actividad
 
-    # @param
+    # @param datos_antropometricos [Object] datos Antropométricos de un individuo
+    # @param nivel_actividad [String] cadena que define el nivel de actividad del individuo
     def initialize(datos_antropometricos, nivel_actividad)
       raise ArgumentError, 'Datos Antropométricos incorrectos' unless datos_antropometricos.is_a? DatosAntropometricos
       @datos_antropometricos = datos_antropometricos
       @nivel_actividad = nivel_actividad
     end
 
+    # Función que calcula el peso teórico inicial
+    # @return [Float] valor del peso teórico inicial
     def peso_teorico_inicial
       return ((@datos_antropometricos.talla*100 - 150) * 0.75) + 50
     end
 
+    # Función que calcula el gasto energético basal
+    # @return [Float] gasto energético basal
     def gasto_energetico_basal
       geb = 10 * @datos_antropometricos.peso + 6.25 * @datos_antropometricos.talla*100 - 5 * @datos_antropometricos.edad
       if @datos_antropometricos.sexo
@@ -188,11 +193,15 @@ module Persona
     end
 
 
+    # Función que calcula el efecto termógeno
+    # @return [Float] devuelve el efecto termógeno
     def efecto_termogeno
       return gasto_energetico_basal * 0.1
     end
 
 
+    # Función que calcula el gasto por actividad física
+    # @return [Float] devuelve el gasto por actividad física
     def gasto_por_actividad_fisica
       nivelActividad = 0.0
       if @nivel_actividad == "Actividad ligera"
@@ -209,11 +218,15 @@ module Persona
     end
 
 
+    # Función que calcula el gasto energético total
+    # @return [Float] devuelve el gasto energético total
     def gasto_energetico_total
       return gasto_energetico_basal + efecto_termogeno + gasto_por_actividad_fisica
     end
 
 
+    # Función que calcula la necesidad alimenticia del individuo
+    # @return [String] la situación alimenticia del individuo
     def necesidad_alimenticia
       # Sumamos todos los costes calóricos de los alimentos presentes en la lista
       calorias_totales = @datos_antropometricos.lista_alimentos.collect{ |i| i.valor_energetico_kcal}.reduce(:+)
