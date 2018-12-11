@@ -200,6 +200,11 @@ RSpec.describe Persona do
         expect(@Menu_Ana.gasto_por_actividad_fisica).to eq(0)
       end
 
+      it "Comprobar el gasto energético total" do
+        expect(@Menu_Camilo.gasto_energetico_total).to eq(2443.7375)
+        expect(@Menu_Ana.gasto_energetico_total).to eq(1628.0)
+      end
+
     end # Pruebas relativas a la clase
 
   end # Práctica #10

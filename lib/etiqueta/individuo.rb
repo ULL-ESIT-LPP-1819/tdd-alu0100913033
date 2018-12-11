@@ -208,6 +208,10 @@ module Persona
     end
 
 
+    def gasto_energetico_total
+      return gasto_energetico_basal + efecto_termogeno + gasto_por_actividad_fisica
+    end
+
   end # class MenuDietetico
 
 
