@@ -119,7 +119,7 @@ module Persona
       def rcc
         rcc_value = get_rcc
 
-        if @sexo == 0
+        if @sexo == 1
             if rcc_value >= 0.83 && rcc_value <= 0.88
               resultado  = "rcc(bajo)=#{sprintf('%.2f',rcc_value)} "
             end
@@ -133,7 +133,7 @@ module Persona
               resultado  = "rcc(Muy Alto)=#{sprintf('%.2f',rcc_value)} "
             end
           end
-        if @sexo == 1
+        if @sexo == 0
           if rcc_value >= 0.72 && rcc_value <= 0.75
             resultado  = "rcc(bajo)=#{sprintf('%.2f',rcc_value)} "
           end
@@ -173,7 +173,18 @@ module Persona
     end
 
     def peso_teorico_inicial
-      return ((datos_antropometricos.talla*100 - 150) * 0.75) + 50
+      return ((@datos_antropometricos.talla*100 - 150) * 0.75) + 50
+    end
+
+    def gasto_energetico_basal
+      geb = 10 * @datos_antropometricos.peso + 6.25 * @datos_antropometricos.talla*100 - 5 * @datos_antropometricos.edad
+      if @datos_antropometricos.sexo
+        geb += 5
+      else
+        geb -= 161
+      end
+
+      return geb
     end
 
 

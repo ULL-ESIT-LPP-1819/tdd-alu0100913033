@@ -183,6 +183,11 @@ RSpec.describe Persona do
         expect(@Menu_Ana.peso_teorico_inicial).to eq(63.5)
       end
 
+      it "Comprobar el gasto energético basal" do
+        expect(@Menu_Camilo.gasto_energetico_basal).to eq(1783.75)
+        expect(@Menu_Ana.gasto_energetico_basal).to eq(1480.0)
+      end
+
     end # Pruebas relativas a la clase
 
   end # Práctica #10
