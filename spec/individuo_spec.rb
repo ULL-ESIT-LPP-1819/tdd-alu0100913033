@@ -214,15 +214,22 @@ RSpec.describe Persona do
         expect(@Menu_Ana.necesidad_alimenticia).to eq("Alimentación insuficiente")
       end
 
-      it "La alimentación es suficiente o excesiva" do
+      it "La alimentación es suficiente" do
         # Añadimos 3 filetes empanados a Camilo y 1 a Ana
         @meal = Etiqueta::Etiqueta.new("Filete empanado", 100.0, 18.11, 4.81, 7.5, 4.16, 0.0, 0.0, 0.13, 91.7, 1035.28, 12.01, 0.2, 21.91, 5.98)
         @Nodo.insert_head(@meal)
         @Nodo.insert_head(@meal)
         @Nodo.insert_head(@meal)
+        @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Nodo)
+        @Menu_Pedro = Persona::MenuDietetico.new(@Datos_Pedro, "Actividad intensa")
 
         # Para camilo es suficiente porque realiza actividad física y requiere más calorías.
         expect(@Menu_Camilo.necesidad_alimenticia).to eq("Alimentación suficiente")
+        expect(@Menu_Pedro.necesidad_alimenticia).to eq("Alimentación suficiente")
+      end
+
+      it "La alimentación es excesiva" do
+
         # Ana tiene una vida sedentaria y requiere menos calorías.
         expect(@Menu_Ana.necesidad_alimenticia).to eq("Alimentación excesiva")
       end
