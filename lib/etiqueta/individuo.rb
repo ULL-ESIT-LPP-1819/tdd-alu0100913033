@@ -14,9 +14,10 @@ module Persona
     # @param sexo [Interger] 0 implica mujer y 1 implica hombre
     # @param tratamiento [Interger] 0 implica "sin tratamiento", y 1 "en tratamiento"
     # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
-    def initialize(nombre, edad, sexo, tratamiento, lista_alimentos = Etiqueta::Node)
+    def initialize(nombre, edad, sexo, tratamiento, lista_alimentos)
       @nombre, @edad, @sexo = nombre, edad, sexo
       @tratamiento = tratamiento
+      raise ArgumentError, 'La lista es incorrecta' unless lista_alimentos.is_a? Etiqueta::Node
       @lista_alimentos = lista_alimentos
     end
 
@@ -210,6 +211,26 @@ module Persona
 
     def gasto_energetico_total
       return gasto_energetico_basal + efecto_termogeno + gasto_por_actividad_fisica
+    end
+
+
+    def necesidad_alimenticia
+      # Sumamos todos los costes calóricos de los alimentos presentes en la lista
+      calorias_totales = @datos_antropometricos.lista_alimentos.collect{ |i| i.valor_energetico_kcal}.reduce(:+)
+      bajo_kcal = gasto_energetico_basal - efecto_termogeno
+      alto_kcal = gasto_energetico_basal + efecto_termogeno
+
+      if calorias_totales < bajo_kcal
+        return "Alimentación insuficiente"
+      end
+
+      if calorias_totales >= bajo_kcal && calorias_totales <= alto_kcal
+        return "Alimentación adecuada"
+      end
+
+      if calorias_totales > alto_kcal
+        return "Alimentación excesiva"
+      end
     end
 
   end # class MenuDietetico

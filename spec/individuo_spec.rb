@@ -155,7 +155,7 @@ RSpec.describe Persona do
 
   context "Práctica #10" do
 
-    before :each do
+    before :all do
     #Creación de la lista de alimentos (comer 3 manzanas) y una tableta entera de chocolate blanco (la gula pasa factura)
     @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
     @apple2 = Etiqueta::Etiqueta.new("manzana2", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
@@ -206,6 +206,14 @@ RSpec.describe Persona do
       end
 
     end # Pruebas relativas a la clase
+
+    context "Verificación alimenticia" do
+      it "La alimentación es insuficiente" do
+        # con 3 manzanas y una tableta de chocolate no se cubre ni de lejos las necesidades calóricas diarias
+        expect(@Menu_Camilo.necesidad_alimenticia).to eq("Alimentación insuficiente")
+        expect(@Menu_Ana.necesidad_alimenticia).to eq("Alimentación insuficiente")
+      end
+    end # Verificación alimenticia
 
   end # Práctica #10
 

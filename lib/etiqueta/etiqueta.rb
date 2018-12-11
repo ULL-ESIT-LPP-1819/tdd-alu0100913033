@@ -4,6 +4,7 @@ module Etiqueta
   # @author Tomás González Martín
   class Etiqueta
     include Comparable
+    include Enumerable
     attr_reader :nombre, :cantidad, :grasas, :grasas_sat, :grasas_mono, :grasas_poli, :polialcoholes, :almidon, :fibra, :vitaminas, :minerales, :hidratos, :azucares, :proteinas, :sal
 
     # Inicialización de la clase Etiqueta del módulo Etiqueta
@@ -143,6 +144,7 @@ module Etiqueta
       return nil unless other.instance_of? Etiqueta
       self.valor_energetico_kj <=> other.valor_energetico_kj
     end
+
 
   end
 
