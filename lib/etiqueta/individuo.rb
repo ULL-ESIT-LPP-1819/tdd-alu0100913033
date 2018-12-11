@@ -163,13 +163,18 @@ module Persona
   # @author Tomás González Martín
   class MenuDietetico
 
+    attr_reader :datos_antropometricos, :nivel_actividad
+
     # @param
-    def initialize(nombre, datos_antropometricos, nivel_actividad)
+    def initialize(datos_antropometricos, nivel_actividad)
       raise ArgumentError, 'Datos Antropométricos incorrectos' unless datos_antropometricos.is_a? DatosAntropometricos
-      @nombre = datos_antropometricos
+      @datos_antropometricos = datos_antropometricos
       @nivel_actividad = nivel_actividad
     end
 
+    def peso_teorico_inicial
+      return ((datos_antropometricos.talla*100 - 150) * 0.75) + 50
+    end
 
 
   end # class MenuDietetico

@@ -161,20 +161,29 @@ RSpec.describe Persona do
     @apple2 = Etiqueta::Etiqueta.new("manzana2", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
     @apple3 = Etiqueta::Etiqueta.new("manzana3", 189.1, 0.69, 0.11, 0.27, 0.20, 2.76, 0.0, 4.02, 72.79, 288.82, 21.99, 20.4, 0.61, 2.2)
     @white_chocolate = Etiqueta::Etiqueta.new("Chocolate blanco", 100.0, 30.9, 18.2, 9.9, 1.1, 0.0, 0.0, 0.8, 57.04, 766.1, 58.8, 59.0, 8.0, 0.1)
-    @Nodo = Etiqueta::Node.new(@apple, @apple2, @apple3)
+    @Nodo = Etiqueta::Node.new(@apple, nil, nil)
+    @Nodo.insert_head(@apple2)
+    @Nodo.insert_head(@apple3)
     @Nodo.insert_head(@white_chocolate)
     # @Nodo = ["manzana", "manzana2", "manzana3", "Chocolate blanco"]
 
     # Personas que han seguido esta dieta (hombre y mujer)
     @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Nodo)
-    @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @Nodo)
+    @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.68, 19, 0, 50.2, 60.2, 0, @Nodo)
 
     # Seguimiento del menú sobre Ana y Camilo
-    @Menu_Camilo = Persona::MenuDietetico.new(@Datos_Camilo.nombre, @Datos_Camilo, "Actividad moderada")
-    @Datos_Ana = Persona::MenuDietetico.new(@Datos_Ana.nombre, @Datos_Ana, "Reposo")
+    @Menu_Camilo = Persona::MenuDietetico.new(@Datos_Camilo, "Actividad moderada")
+    @Menu_Ana = Persona::MenuDietetico.new(@Datos_Ana, "Reposo")
     end
 
-    
+    context "Pruebas relativas a la clase" do
+      it "Comprobar el peso teórico inicial" do
+        # Expectativas de peso ideal esperado teóricamente
+        expect(@Menu_Camilo.peso_teorico_inicial).to eq(65.75)
+        expect(@Menu_Ana.peso_teorico_inicial).to eq(63.5)
+      end
+
+    end # Pruebas relativas a la clase
 
   end # Práctica #10
 
