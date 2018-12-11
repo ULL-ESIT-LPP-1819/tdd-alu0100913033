@@ -192,6 +192,22 @@ module Persona
     end
 
 
+    def gasto_por_actividad_fisica
+      nivelActividad = 0.0
+      if @nivel_actividad == "Actividad ligera"
+        nivelActividad = 0.12
+      end
+      if @nivel_actividad == "Actividad moderada"
+        nivelActividad = 0.27
+      end
+      if @nivel_actividad == "Actividad intensa"
+        nivelActividad = 0.54
+      end
+
+      return gasto_energetico_basal * nivelActividad
+    end
+
+
   end # class MenuDietetico
 
 

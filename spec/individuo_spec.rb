@@ -194,6 +194,12 @@ RSpec.describe Persona do
         expect(@Menu_Ana.efecto_termogeno).to eq(@Menu_Ana.gasto_energetico_basal * 0.1)
       end
 
+      it "Comprobar el gasto por actividad física" do
+        # Se espera que Ana no tenga gastos por actividad física, dado que siempre está en reposo
+        expect(@Menu_Camilo.gasto_por_actividad_fisica).to eq(481.6125)
+        expect(@Menu_Ana.gasto_por_actividad_fisica).to eq(0)
+      end
+
     end # Pruebas relativas a la clase
 
   end # Práctica #10
