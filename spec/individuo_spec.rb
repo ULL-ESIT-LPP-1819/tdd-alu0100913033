@@ -153,4 +153,29 @@ RSpec.describe Persona do
   end # -------->Práctica#09
 
 
+  context "Práctica #10" do
+
+    before :each do
+    #Creación de la lista de alimentos (comer 3 manzanas) y una tableta entera de chocolate blanco (la gula pasa factura)
+    @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+    @apple2 = Etiqueta::Etiqueta.new("manzana2", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
+    @apple3 = Etiqueta::Etiqueta.new("manzana3", 189.1, 0.69, 0.11, 0.27, 0.20, 2.76, 0.0, 4.02, 72.79, 288.82, 21.99, 20.4, 0.61, 2.2)
+    @white_chocolate = Etiqueta::Etiqueta.new("Chocolate blanco", 100.0, 30.9, 18.2, 9.9, 1.1, 0.0, 0.0, 0.8, 57.04, 766.1, 58.8, 59.0, 8.0, 0.1)
+    @Nodo = Etiqueta::Node.new(@apple, @apple2, @apple3)
+    @Nodo.insert_head(@white_chocolate)
+    # @Nodo = ["manzana", "manzana2", "manzana3", "Chocolate blanco"]
+
+    # Personas que han seguido esta dieta (hombre y mujer)
+    @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Nodo)
+    @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @Nodo)
+
+    # Seguimiento del menú sobre Ana y Camilo
+    @Menu_Camilo = Persona::MenuDietetico.new(@Datos_Camilo.nombre, @Datos_Camilo, "Actividad moderada")
+    @Datos_Ana = Persona::MenuDietetico.new(@Datos_Ana.nombre, @Datos_Ana, "Reposo")
+    end
+
+    
+
+  end # Práctica #10
+
 end # RSpec.describe Individuo

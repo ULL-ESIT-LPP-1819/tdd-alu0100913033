@@ -49,12 +49,15 @@ module Persona
     # @param cadera [Float] anchura de la cadera de la persona en cm
     # @param tratamiento [Interger] 0 implica "sin tratamiento", y 1 "en tratamiento"
     # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
-      def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento, lista_alimentos = Etiqueta::Node)
+      def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento, lista_alimentos)
+        # Comprobar que la lista de alimentos se recibe correctamente
+        raise ArgumentError, 'La lista es incorrecta' unless lista_alimentos.is_a? Etiqueta::Node
         super(nombre, edad, sexo, tratamiento, lista_alimentos)
         @peso = peso
         @talla = talla
         @cintura = cintura
         @cadera = cadera
+        @lista_alimentos = lista_alimentos
       end
 
 
@@ -157,6 +160,19 @@ module Persona
 
   end # class DatosAntropometricos
 
+  # @author Tomás González Martín
+  class MenuDietetico
+
+    # @param
+    def initialize(nombre, datos_antropometricos, nivel_actividad)
+      raise ArgumentError, 'Datos Antropométricos incorrectos' unless datos_antropometricos.is_a? DatosAntropometricos
+      @nombre = datos_antropometricos
+      @nivel_actividad = nivel_actividad
+    end
+
+
+
+  end # class MenuDietetico
 
 
 end # module Persona
