@@ -188,6 +188,12 @@ RSpec.describe Persona do
         expect(@Menu_Ana.gasto_energetico_basal).to eq(1480.0)
       end
 
+      it "Comprobar el efecto termógeno" do
+        # El efecto termógeno debe ser el 10% del gasto energético basal
+        expect(@Menu_Camilo.efecto_termogeno).to eq(@Menu_Camilo.gasto_energetico_basal * 0.1)
+        expect(@Menu_Ana.efecto_termogeno).to eq(@Menu_Ana.gasto_energetico_basal * 0.1)
+      end
+
     end # Pruebas relativas a la clase
 
   end # Práctica #10

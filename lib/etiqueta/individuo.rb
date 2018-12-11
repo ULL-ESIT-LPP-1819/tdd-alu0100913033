@@ -183,8 +183,12 @@ module Persona
       else
         geb -= 161
       end
-
       return geb
+    end
+
+
+    def efecto_termogeno
+      return gasto_energetico_basal * 0.1
     end
 
 
