@@ -5,7 +5,7 @@ module Persona
   include Etiqueta
 
   # @author Tomás González Martín
-  class Persona < Node
+  class Persona
     attr_reader :nombre, :edad, :sexo, :tratamiento, :lista_alimentos
 
     # Inicialización de la clase Persona del módulo Persona
