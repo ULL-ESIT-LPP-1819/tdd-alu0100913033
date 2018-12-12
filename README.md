@@ -1,3 +1,4 @@
+![Build Status](https://travis-ci.org/ULL-ESIT-LPP-1819/tdd-alu0100913033.svg?branch=master)
 # Etiqueta
 Clase etiqueta que implementa la información nutricional. Se ha actualizado con los requisitos de la práctica #07.
 * Se ha actualizado con los requisitos de la práctica #8
