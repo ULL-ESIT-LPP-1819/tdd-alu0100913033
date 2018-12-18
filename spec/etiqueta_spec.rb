@@ -459,7 +459,7 @@ RSpec.describe Etiqueta do
 
       end
 
-      it "Representación de diez menús dietéticos" do
+      it "Representación de diez menús dietéticos mediante un Array" do
         my_array = [@Menu_node, @Menu, @Menu2, @Menu3, @Menu4, @Menu5, @Menu6, @Menu7, @Menu8, @Menu9]
         expect(my_array.length).to eq(10)
         expect(my_array.class).to eq(Array)

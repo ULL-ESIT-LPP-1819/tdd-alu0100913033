@@ -241,4 +241,78 @@ RSpec.describe Persona do
 
   end # Práctica #10
 
+  context "# Práctica#11" do
+    before :all do
+      @meal = Etiqueta::Etiqueta.new("Filete empanado", 100.0, 18.11, 4.81, 7.5, 4.16, 0.0, 0.0, 0.13, 91.7, 1035.28, 12.01, 0.2, 21.91, 5.98)
+      @strawberry_jaw = Etiqueta::Etiqueta.new("Mermelada de fresa", 25.0, 0.05, 0.0, 0.03, 0.0, 0.0, 0.0, 0.2, 27.53, 23.32, 15.65, 13.54, 0.08, 1.25)
+
+
+      ######## Listas de alimentos ########
+      @Nodo = Etiqueta::Node.new(@apple, nil, nil)
+      @Nodo.insert_head(@apple2)
+      @Nodo.insert_head(@apple3)
+      @Nodo.insert_head(@white_chocolate)
+      # @Nodo = [@apple, @apple2, @apple3, @white_chocolate]
+
+      @Nodo2 = Etiqueta::Node.new(@white_chocolate, nil, nil)
+      @Nodo2.insert_head(@meal)
+      @Nodo2.insert_head(@meal)
+      @Nodo2.insert_head(@meal)
+      # @Nodo2 = [@white_chocolate, @meal, @meal, @meal]
+
+      @Nodo3 = Etiqueta::Node.new(@strawberry_jaw, nil, nil)
+      @Nodo3.insert_head(@strawberry_jaw)
+      @Nodo3.insert_head(@meal)
+      @Nodo3.insert_head(@apple3)
+      # @Nodo3 = [@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
+
+      ###Menús dietéticos###
+      @Menu = Etiqueta::MenuDietetico.new(@Nodo)      #[@apple, @apple2, @apple3, @white_chocolate]
+      @Menu2 = Etiqueta::MenuDietetico.new(@Nodo2)    #[@white_chocolate, @meal, @meal, @meal]
+      @Menu3 = Etiqueta::MenuDietetico.new(@Nodo3)    #[@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
+
+      #######Personas a valorar########
+      @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Menu)
+      @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.68, 19, 0, 50.2, 60.2, 0, @Menu3)
+      @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Menu2)
+      @Datos_Nina = Persona::DatosAntropometricos.new("Nina", 52, 1.71, 92, 0, 50.2, 60.2, 0, @Menu_dietetico)
+      @Datos_Antonio = Persona::DatosAntropometricos.new("Antonio", 82, 1.77, 35, 1, 93.2, 93.1, 0, @Menu)
+      @Datos_Manuel = Persona::DatosAntropometricos.new("Manuel", 97, 1.91, 35, 1, 99.2, 99.1, 1, @Menu2)
+      @Datos_Felicia = Persona::DatosAntropometricos.new("Felicia", 110, 1.67, 52, 0, 120.2, 120.1, 1, @Menu3)
+      @Datos_Paula = Persona::DatosAntropometricos.new("Paula", 51, 1.67, 21, 0, 50.2, 60.2, 0, @Menu)
+      @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @Menu2)
+      @Datos_Jose = Persona::DatosAntropometricos.new("José", 90, 1.65, 22, 1, 90.0, 95.0, 1, @Menu3)
+
+
+      ######Valoraciones nutricionales######
+      # @Menu_Pedro
+      # @Menu_Ana
+      # @Menu_Camilo
+      @Menu_Nina = Persona::ValoracionNutricional.new(@Datos_Nina, "Reposo")
+      @Menu_Fatima = Persona::ValoracionNutricional.new(@Datos_Fatima, "Actividad intensa")
+      @Menu_Jose = Persona::ValoracionNutricional.new(@Datos_Jose, "Actividad moderada")
+      @Menu_Antonio = Persona::ValoracionNutricional.new(@Datos_Antonio, "Actividad intensa")
+      @Menu_Manuel = Persona::ValoracionNutricional.new(@Datos_Manuel, "Actividad ligera")
+      @Menu_Felicia = Persona::ValoracionNutricional.new(@Datos_Felicia, "Reposo")
+      @Menu_Paula = Persona::ValoracionNutricional.new(@Datos_Paula, "Reposo")
+
+    end #before :all
+
+    it "Representación de 10 valoraciones nutricionales de un individuo mediante una DLL" do
+      @node_vn = Etiqueta::Node.new(@Menu_Pedro, nil, nil)
+      @node_vn.insert_head(@Menu_Ana)
+      @node_vn.insert_head(@Menu_Camilo)
+      @node_vn.insert_head(@Menu_Nina)
+      @node_vn.insert_head(@Menu_Fatima)
+      @node_vn.insert_head(@Menu_Jose)
+      @node_vn.insert_head(@Menu_Antonio)
+      @node_vn.insert_head(@Menu_Manuel)
+      @node_vn.insert_head(@Menu_Felicia)
+      @node_vn.insert_head(@Menu_Paula)
+
+      expect(@node_vn.get_size).to eq(10)
+      expect(@node_vn.class).to eq(Etiqueta::Node)
+    end
+  end # Práctica#11"
+
 end # RSpec.describe Individuo
