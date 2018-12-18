@@ -572,7 +572,7 @@ RSpec.describe Persona do
           it = -1
           @Menu_minimo = Persona::ValoracionNutricional.new(@Dato_minimo, "Actividad intensa")
           for i in 0..@node_vn_copy.count-1
-                if @node_vn_copy[i].gasto_energetico_basal <= @Menu_minimo.gasto_energetico_basal
+                if @node_vn_copy[i].gasto_energetico_total <= @Menu_minimo.gasto_energetico_total
                   @Menu_minimo = @node_vn_copy[i]
                   it = i
                 end
@@ -636,7 +636,7 @@ RSpec.describe Persona do
             it = -1
             @Menu_minimo = Persona::ValoracionNutricional.new(@Dato_minimo, "Actividad intensa")
             for i in 0..@node_vn_copy.count-1
-                  if @node_vn_copy[i].gasto_energetico_basal <= @Menu_minimo.gasto_energetico_basal
+                  if @node_vn_copy[i].gasto_energetico_total <= @Menu_minimo.gasto_energetico_total
                     @Menu_minimo = @node_vn_copy[i]
                     it = i
                   end
