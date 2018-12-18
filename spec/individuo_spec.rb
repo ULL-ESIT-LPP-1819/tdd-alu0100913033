@@ -402,9 +402,9 @@ RSpec.describe Persona do
       end
 
 
-      #it "Obtener un nuevo array de elementos ordenados usando el método sort" do
-        #expect(@my_array.sort { |x, y|  x <=> y }).to eq([@Menu_node, @Menu3, @Menu5, @Menu, @Menu7, @Menu4, @Menu8, @Menu2, @Menu6, @Menu9])
-      #end
+      it "Obtener un nuevo array de elementos ordenados usando el método sort" do
+        expect(@my_array.sort { |x, y|  x <=> y }).to eq([@Menu_node, @Menu3, @Menu5, @Menu, @Menu7, @Menu4, @Menu8, @Menu2, @Menu6, @Menu9])
+      end
 
   end # Práctica#11   ------   Menús dietéticos
 
