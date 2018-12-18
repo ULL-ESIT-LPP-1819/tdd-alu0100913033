@@ -249,7 +249,7 @@ module Persona
 
     def <=>(other)
       return nil unless other.instance_of? ValoracionNutricional
-      gasto_energetico_basal <=> other.gasto_energetico_basal
+      gasto_energetico_total <=> other.gasto_energetico_total
     end
 
 

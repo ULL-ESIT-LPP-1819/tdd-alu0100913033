@@ -587,7 +587,7 @@ RSpec.describe Persona do
         @node_vn_sorted.remove_tail
 
       # Vemos que, efectivamente, el array queda correctamente ordenado
-      expect(@node_vn_sorted.to_s).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
+      expect(@node_vn_sorted.to_s).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Felicia, @Menu_Manuel, @Menu_Fatima, @Menu_Camilo, @Menu_Jose, @Menu_Pedro, @Menu_Antonio])
 
     end
 
@@ -613,12 +613,12 @@ RSpec.describe Persona do
         end
       end
 
-      expect(sorting).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
+      expect(sorting).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Felicia, @Menu_Manuel, @Menu_Fatima, @Menu_Camilo, @Menu_Jose, @Menu_Pedro, @Menu_Antonio])
     end
 
 
     it "Obtener un nuevo array de elementos ordenados usando el método sort" do
-      expect(@node_vn.sort { |x, y|  x <=> y }).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
+      expect(@node_vn.sort { |x, y|  x <=> y }).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Felicia, @Menu_Manuel, @Menu_Fatima, @Menu_Camilo, @Menu_Jose, @Menu_Pedro, @Menu_Antonio])
     end
 
     it "Benchmark sobre los distintos métodos de ordenación" do

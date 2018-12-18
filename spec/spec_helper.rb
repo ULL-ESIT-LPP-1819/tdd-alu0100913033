@@ -1,7 +1,7 @@
 require "bundler/setup"
 require "etiqueta/etiqueta"
 require "etiqueta/individuo"
-require ’coveralls’
+require 'coveralls'
 Coveralls.wear!
 
 RSpec.configure do |config|
