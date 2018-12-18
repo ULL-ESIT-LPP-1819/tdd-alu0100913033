@@ -15,7 +15,7 @@ RSpec.describe Persona do
     @node.insert_head(@apple3)
     @node.insert_head(@apple)
     @node.insert_tail(@apple3)
-    @Menu_dietetico = Etiqueta::MenuDietetico.new(@node)
+    @Menu_dietetico = Persona::MenuDietetico.new(@node)
 
     @Jose = Persona::Persona.new("José", 22, 1, 1, @Menu_dietetico)
     @Datos = Persona::DatosAntropometricos.new("José", 90, 1.65, 22, 1, 90.0, 95.0, 1, @Menu_dietetico)
@@ -167,7 +167,7 @@ RSpec.describe Persona do
     @Nodo.insert_head(@apple3)
     @Nodo.insert_head(@white_chocolate)
     # @Nodo = ["manzana", "manzana2", "manzana3", "Chocolate blanco"]
-    @Menu_Dietetico = Etiqueta::MenuDietetico.new(@Nodo)
+    @Menu_Dietetico = Persona::MenuDietetico.new(@Nodo)
 
 
     # Personas que han seguido esta dieta (hombre y mujer)
@@ -241,7 +241,158 @@ RSpec.describe Persona do
 
   end # Práctica #10
 
-  context "# Práctica#11" do
+
+  context "# Práctica#11   ------   Menús dietéticos" do
+
+    before :all do
+      @apple = Etiqueta::Etiqueta.new("manzana", 200.0, 0.72, 0.12, 0.30, 0.21, 2.78, 0.0, 4.04, 72.82, 289.18, 22.80, 20.62, 0.63, 2.4)
+      @apple2 = Etiqueta::Etiqueta.new("manzana2", 199.1, 0.71, 0.13, 0.29, 0.22, 2.79, 0.0, 4.05, 72.83, 289.19, 22.81, 20.6, 0.64, 2.5)
+      @apple3 = Etiqueta::Etiqueta.new("manzana3", 189.1, 0.69, 0.11, 0.27, 0.20, 2.76, 0.0, 4.02, 72.79, 288.82, 21.99, 20.4, 0.61, 2.2)
+      @white_chocolate = Etiqueta::Etiqueta.new("Chocolate blanco", 100.0, 30.9, 18.2, 9.9, 1.1, 0.0, 0.0, 0.8, 57.04, 766.1, 58.8, 59.0, 8.0, 0.1)
+      @meal = Etiqueta::Etiqueta.new("Filete empanado", 100.0, 18.11, 4.81, 7.5, 4.16, 0.0, 0.0, 0.13, 91.7, 1035.28, 12.01, 0.2, 21.91, 5.98)
+      @strawberry_jaw = Etiqueta::Etiqueta.new("Mermelada de fresa", 25.0, 0.05, 0.0, 0.03, 0.0, 0.0, 0.0, 0.2, 27.53, 23.32, 15.65, 13.54, 0.08, 1.25)
+
+
+      ######## Listas de alimentos ########
+      @node = Etiqueta::Node.new(@apple, nil, nil)
+      @node.insert_head(@apple2)
+      @node.insert_head(@apple3)
+      @node.insert_head(@apple)
+      @node.insert_head(@apple3)
+      # @Nodo = [@apple, @apple2, @apple3, @apple, @apple3]
+
+
+      @Nodo = Etiqueta::Node.new(@apple, nil, nil)
+      @Nodo.insert_head(@apple2)
+      @Nodo.insert_head(@apple3)
+      @Nodo.insert_head(@white_chocolate)
+      # @Nodo = [@apple, @apple2, @apple3, @white_chocolate]
+
+      @Nodo2 = Etiqueta::Node.new(@white_chocolate, nil, nil)
+      @Nodo2.insert_head(@meal)
+      @Nodo2.insert_head(@meal)
+      @Nodo2.insert_head(@meal)
+      # @Nodo2 = [@white_chocolate, @meal, @meal, @meal]
+
+      @Nodo3 = Etiqueta::Node.new(@strawberry_jaw, nil, nil)
+      @Nodo3.insert_head(@strawberry_jaw)
+      @Nodo3.insert_head(@meal)
+      @Nodo3.insert_head(@apple3)
+      # @Nodo3 = [@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
+
+      @Nodo4 = Etiqueta::Node.new(@white_chocolate, nil, nil)
+      @Nodo4.insert_head(@strawberry_jaw)
+      @Nodo4.insert_head(@meal)
+      @Nodo4.insert_head(@apple3)
+      # @Nodo4 = [@white_chocolate, @strawberry_jaw, @meal, @apple3]
+
+      @Nodo5 = Etiqueta::Node.new(@apple3, nil, nil)
+      @Nodo5.insert_head(@apple3)
+      @Nodo5.insert_head(@white_chocolate)
+      @Nodo5.insert_head(@apple2)
+      # @Nodo5 = [@apple3, @apple3, @white_chocolate, @apple2]
+
+      @Nodo6 = Etiqueta::Node.new(@apple3, nil, nil)
+      @Nodo6.insert_head(@white_chocolate)
+      @Nodo6.insert_head(@white_chocolate)
+      @Nodo6.insert_head(@meal)
+      @Nodo6.insert_head(@meal)
+      @Nodo6.insert_head(@white_chocolate)
+      @Nodo6.insert_head(@apple2)
+      # @Nodo6 = [@apple3, @white_chocolate, @white_chocolate, @meal, @meal, @white_chocolate, @apple2]
+
+      @Nodo7 = Etiqueta::Node.new(@strawberry_jaw, nil, nil)
+      @Nodo7.insert_head(@strawberry_jaw)
+      @Nodo7.insert_head(@white_chocolate)
+      @Nodo7.insert_head(@apple2)
+      @Nodo7.insert_head(@apple)
+      # @Nodo7 = [@strawberry_jaw, @strawberry_jaw, @white_chocolate, @apple2, @apple]
+
+      @Nodo8 = Etiqueta::Node.new(@apple2, nil, nil)
+      @Nodo8.insert_head(@apple)
+      @Nodo8.insert_head(@meal)
+      @Nodo8.insert_head(@meal)
+      @Nodo8.insert_head(@white_chocolate)
+      # @Nodo8 = [@apple2, @apple, @meal, @meal, @white_chocolate]
+
+      @Nodo9 = Etiqueta::Node.new(@white_chocolate, nil, nil)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@apple2)
+      # @Nodo9 = [@white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate.... , @apple2]
+
+      #########Menús creados#########
+      @Menu_node = Persona::MenuDietetico.new(@node) #[@apple3, @apple, @apple2, @apple3, @apple]
+      @Menu = Persona::MenuDietetico.new(@Nodo)      #[@apple, @apple2, @apple3, @white_chocolate]
+      @Menu2 = Persona::MenuDietetico.new(@Nodo2)    #[@white_chocolate, @meal, @meal, @meal]
+      @Menu3 = Persona::MenuDietetico.new(@Nodo3)    #[@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
+      @Menu4 = Persona::MenuDietetico.new(@Nodo4)    #[@white_chocolate, @strawberry_jaw, @meal, @apple3]
+      @Menu5 = Persona::MenuDietetico.new(@Nodo5)    #[@apple3, @apple3, @white_chocolate, @apple2]
+      @Menu6 = Persona::MenuDietetico.new(@Nodo6)    #[@apple3, @white_chocolate, @white_chocolate, @meal, @meal, @white_chocolate, @apple2]
+      @Menu7 = Persona::MenuDietetico.new(@Nodo7)    #[@strawberry_jaw, @strawberry_jaw, @white_chocolate, @apple2, @apple]
+      @Menu8 = Persona::MenuDietetico.new(@Nodo8)    #[@apple2, @apple, @meal, @meal, @white_chocolate]
+      @Menu9 = Persona::MenuDietetico.new(@Nodo9)    #[@white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate.... , @apple2]
+
+      @my_array = [@Menu_node, @Menu, @Menu2, @Menu3, @Menu4, @Menu5, @Menu6, @Menu7, @Menu8, @Menu9]
+
+
+      end
+
+      it "Representación de diez menús dietéticos mediante un Array" do
+        expect(@my_array.length).to eq(10)
+        expect(@my_array.class).to eq(Array)
+      end
+
+      it "Obtener un nuevo array con los elementos ordenados usando bucles for" do
+
+      my_array_copy = @my_array.map(&:clone)
+      @my_array_sorted = Array.new(0)
+
+      
+        for i in 0.. @my_array.count-1
+          min = @Menu9
+          it = -1
+          for i in 0..my_array_copy.count-1
+                if my_array_copy[i].calorias_totales <= min.calorias_totales
+                  min = my_array_copy[i]
+                  it = i
+                end
+          end
+          @my_array_sorted.push(min)
+          my_array_copy.delete_at(it)
+        end
+
+      # Vemos que, efectivamente, el array queda correctamente ordenado
+      expect(@my_array_sorted).to eq(@my_array.sort { |x, y|  x <=> y })
+
+      end
+
+  end # Práctica#11   ------   Menús dietéticos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  context "# Práctica#11   ------   Valores nutricionales" do
     before :all do
       @meal = Etiqueta::Etiqueta.new("Filete empanado", 100.0, 18.11, 4.81, 7.5, 4.16, 0.0, 0.0, 0.13, 91.7, 1035.28, 12.01, 0.2, 21.91, 5.98)
       @strawberry_jaw = Etiqueta::Etiqueta.new("Mermelada de fresa", 25.0, 0.05, 0.0, 0.03, 0.0, 0.0, 0.0, 0.2, 27.53, 23.32, 15.65, 13.54, 0.08, 1.25)
@@ -267,9 +418,9 @@ RSpec.describe Persona do
       # @Nodo3 = [@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
 
       ###Menús dietéticos###
-      @Menu = Etiqueta::MenuDietetico.new(@Nodo)      #[@apple, @apple2, @apple3, @white_chocolate]
-      @Menu2 = Etiqueta::MenuDietetico.new(@Nodo2)    #[@white_chocolate, @meal, @meal, @meal]
-      @Menu3 = Etiqueta::MenuDietetico.new(@Nodo3)    #[@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
+      @Menu = Persona::MenuDietetico.new(@Nodo)      #[@apple, @apple2, @apple3, @white_chocolate]
+      @Menu2 = Persona::MenuDietetico.new(@Nodo2)    #[@white_chocolate, @meal, @meal, @meal]
+      @Menu3 = Persona::MenuDietetico.new(@Nodo3)    #[@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
 
       #######Personas a valorar########
       @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Menu)
@@ -313,6 +464,9 @@ RSpec.describe Persona do
       expect(@node_vn.get_size).to eq(10)
       expect(@node_vn.class).to eq(Etiqueta::Node)
     end
-  end # Práctica#11"
+
+  end # Práctica#11   ------   Valores nutricionales
+
+
 
 end # RSpec.describe Individuo

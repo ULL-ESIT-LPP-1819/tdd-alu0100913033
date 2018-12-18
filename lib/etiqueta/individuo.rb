@@ -15,7 +15,7 @@ module Persona
     # @param tratamiento [Interger] 0 implica "sin tratamiento", y 1 "en tratamiento"
     # @param menu_dietetico [Etiqueta::MenuDietetico] contiene un listado de alimentos consumidos a lo largo del día por el individuo
     def initialize(nombre, edad, sexo, tratamiento, menu_dietetico)
-      raise ArgumentError, 'Menú dietético incorrecto' unless menu_dietetico.is_a? Etiqueta::MenuDietetico
+      raise ArgumentError, 'Menú dietético incorrecto' unless menu_dietetico.is_a? MenuDietetico
       @nombre, @edad, @sexo = nombre, edad, sexo
       @tratamiento = tratamiento
       @menu_dietetico = menu_dietetico
@@ -52,7 +52,7 @@ module Persona
     # @param menu_dietetico [Etiqueta::MenuDietetico] contiene un listado de alimentos consumidos a lo largo del día por el individuo
       def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento, menu_dietetico)
         # Comprobar que la lista de alimentos se recibe correctamente
-        raise ArgumentError, 'Menú dietético incorrecto' unless menu_dietetico.is_a? Etiqueta::MenuDietetico
+        raise ArgumentError, 'Menú dietético incorrecto' unless menu_dietetico.is_a? MenuDietetico
         super(nombre, edad, sexo, tratamiento, menu_dietetico)
         @peso = peso
         @talla = talla
@@ -246,7 +246,32 @@ module Persona
     end
 
 
-  end # class MenuDietetico
+  end # class MValoracionNutricional
+
+
+  # @author Tomás González Martín
+    class MenuDietetico
+      include Comparable
+
+      attr_reader :lista_alimentos
+      # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
+      def initialize(lista_alimentos)
+        raise ArgumentError, 'La lista es incorrecta' unless lista_alimentos.is_a? Etiqueta::Node
+        @lista_alimentos = lista_alimentos
+      end
+
+      def calorias_totales
+        lista_alimentos.collect{ |i| i.valor_energetico_kcal}.reduce(:+)
+      end
+
+
+      def <=>(other)
+        return nil unless other.instance_of? MenuDietetico
+        calorias_totales <=> other.calorias_totales
+      end
+
+    end # MenuDietetico
+
 
 
 end # module Persona
