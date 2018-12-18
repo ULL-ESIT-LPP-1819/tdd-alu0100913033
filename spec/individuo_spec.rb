@@ -563,6 +563,10 @@ RSpec.describe Persona do
       expect(sorting).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
     end
 
+
+    it "Obtener un nuevo array de elementos ordenados usando el método sort" do
+      expect(@node_vn.sort { |x, y|  x <=> y }).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
+    end
   end # Práctica#11   ------   Valores nutricionales
 
 
