@@ -15,9 +15,10 @@ RSpec.describe Persona do
     @node.insert_head(@apple3)
     @node.insert_head(@apple)
     @node.insert_tail(@apple3)
+    @Menu_dietetico = Etiqueta::MenuDietetico.new(@node)
 
-    @Jose = Persona::Persona.new("José", 22, 1, 1, @node)
-    @Datos = Persona::DatosAntropometricos.new("José", 90, 1.65, 22, 1, 90.0, 95.0, 1, @node)
+    @Jose = Persona::Persona.new("José", 22, 1, 1, @Menu_dietetico)
+    @Datos = Persona::DatosAntropometricos.new("José", 90, 1.65, 22, 1, 90.0, 95.0, 1, @Menu_dietetico)
 
 
   end
@@ -48,7 +49,7 @@ RSpec.describe Persona do
     it "* Jerarquía de clases correcta" do
       # expect(Persona::DatosAntropometricos.ancestors).to eq([Persona::DatosAntropometricos, Persona::Persona, Etiqueta::Node, Struct, Enumerable, Object, PP::ObjectMixin, Kernel, BasicObject])
       expect(Persona::DatosAntropometricos.superclass).to eq(Persona::Persona)
-      #expect(Persona::Persona.superclass).to eq(Etiqueta::Node)
+      expect(Persona::Persona.superclass).to eq(Object)
     end
   end # Comprobar clase, tipo y jerarquía
 
@@ -56,10 +57,10 @@ RSpec.describe Persona do
     before :all do
       @Datos_Jose = @Datos
       @Nodo = Etiqueta::Node.new(@Datos_Jose, nil, nil)
-      @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @node)
-      @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @node)
-      @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @node)
-      @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @node)
+      @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Menu_dietetico)
+      @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @Menu_dietetico)
+      @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @Menu_dietetico)
+      @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Menu_dietetico)
       @Nodo.insert_head(@Datos_Camilo)
       @Nodo.insert_head(@Datos_Ana)
       @Nodo.insert_head(@Datos_Fatima)
@@ -86,11 +87,11 @@ RSpec.describe Persona do
     before :each do
       @Datos_Jose = @Datos
       @Nodo = Etiqueta::Node.new(@Datos_Jose, nil, nil)
-      @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @node)
-      @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @node)
-      @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @node)
-      @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @node)
-      @Datos_Nina = Persona::DatosAntropometricos.new("Nina", 52, 1.71, 92, 0, 50.2, 60.2, 0, @node)
+      @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Menu_dietetico)
+      @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.71, 19, 0, 50.2, 60.2, 0, @Menu_dietetico)
+      @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @Menu_dietetico)
+      @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Menu_dietetico)
+      @Datos_Nina = Persona::DatosAntropometricos.new("Nina", 52, 1.71, 92, 0, 50.2, 60.2, 0, @Menu_dietetico)
       @Nodo.insert_head(@Datos_Camilo)
       @Nodo.insert_head(@Datos_Ana)
       @Nodo.insert_head(@Datos_Fatima)
@@ -166,14 +167,16 @@ RSpec.describe Persona do
     @Nodo.insert_head(@apple3)
     @Nodo.insert_head(@white_chocolate)
     # @Nodo = ["manzana", "manzana2", "manzana3", "Chocolate blanco"]
+    @Menu_Dietetico = Etiqueta::MenuDietetico.new(@Nodo)
+
 
     # Personas que han seguido esta dieta (hombre y mujer)
-    @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Nodo)
-    @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.68, 19, 0, 50.2, 60.2, 0, @Nodo)
+    @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Menu_Dietetico)
+    @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.68, 19, 0, 50.2, 60.2, 0, @Menu_Dietetico)
 
     # Seguimiento del menú sobre Ana y Camilo
-    @Menu_Camilo = Persona::MenuDietetico.new(@Datos_Camilo, "Actividad moderada")
-    @Menu_Ana = Persona::MenuDietetico.new(@Datos_Ana, "Reposo")
+    @Menu_Camilo = Persona::ValoracionNutricional.new(@Datos_Camilo, "Actividad moderada")
+    @Menu_Ana = Persona::ValoracionNutricional.new(@Datos_Ana, "Reposo")
     end
 
     context "Pruebas relativas a la clase" do
@@ -220,8 +223,8 @@ RSpec.describe Persona do
         @Nodo.insert_head(@meal)
         @Nodo.insert_head(@meal)
         @Nodo.insert_head(@meal)
-        @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Nodo)
-        @Menu_Pedro = Persona::MenuDietetico.new(@Datos_Pedro, "Actividad intensa")
+        @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Menu_Dietetico)
+        @Menu_Pedro = Persona::ValoracionNutricional.new(@Datos_Pedro, "Actividad intensa")
 
         # Para camilo es suficiente porque realiza actividad física y requiere más calorías.
         expect(@Menu_Camilo.necesidad_alimenticia).to eq("Alimentación suficiente")

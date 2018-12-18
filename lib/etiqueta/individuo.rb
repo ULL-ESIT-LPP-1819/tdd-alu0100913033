@@ -6,19 +6,19 @@ module Persona
 
   # @author Tomás González Martín
   class Persona
-    attr_reader :nombre, :edad, :sexo, :tratamiento, :lista_alimentos
+    attr_reader :nombre, :edad, :sexo, :tratamiento, :menu_dietetico
 
     # Inicialización de la clase Persona del módulo Persona
     # @param nombre [String] contiene el nombre de la persona
     # @param edad [Interger] edad del individuo
     # @param sexo [Interger] 0 implica mujer y 1 implica hombre
     # @param tratamiento [Interger] 0 implica "sin tratamiento", y 1 "en tratamiento"
-    # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
-    def initialize(nombre, edad, sexo, tratamiento, lista_alimentos)
+    # @param menu_dietetico [Etiqueta::MenuDietetico] contiene un listado de alimentos consumidos a lo largo del día por el individuo
+    def initialize(nombre, edad, sexo, tratamiento, menu_dietetico)
+      raise ArgumentError, 'Menú dietético incorrecto' unless menu_dietetico.is_a? Etiqueta::MenuDietetico
       @nombre, @edad, @sexo = nombre, edad, sexo
       @tratamiento = tratamiento
-      raise ArgumentError, 'La lista es incorrecta' unless lista_alimentos.is_a? Etiqueta::Node
-      @lista_alimentos = lista_alimentos
+      @menu_dietetico = menu_dietetico
     end
 
     # Mostrar a la persona
@@ -49,16 +49,15 @@ module Persona
     # @param cintura [Float] anchura de la cintura de la persona en cm
     # @param cadera [Float] anchura de la cadera de la persona en cm
     # @param tratamiento [Interger] 0 implica "sin tratamiento", y 1 "en tratamiento"
-    # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
-      def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento, lista_alimentos)
+    # @param menu_dietetico [Etiqueta::MenuDietetico] contiene un listado de alimentos consumidos a lo largo del día por el individuo
+      def initialize(nombre, peso, talla, edad, sexo, cintura, cadera, tratamiento, menu_dietetico)
         # Comprobar que la lista de alimentos se recibe correctamente
-        raise ArgumentError, 'La lista es incorrecta' unless lista_alimentos.is_a? Etiqueta::Node
-        super(nombre, edad, sexo, tratamiento, lista_alimentos)
+        raise ArgumentError, 'Menú dietético incorrecto' unless menu_dietetico.is_a? Etiqueta::MenuDietetico
+        super(nombre, edad, sexo, tratamiento, menu_dietetico)
         @peso = peso
         @talla = talla
         @cintura = cintura
         @cadera = cadera
-        @lista_alimentos = lista_alimentos
       end
 
 
@@ -162,7 +161,7 @@ module Persona
   end # class DatosAntropometricos
 
   # @author Tomás González Martín
-  class MenuDietetico
+  class ValoracionNutricional
 
     attr_reader :datos_antropometricos, :nivel_actividad
 
@@ -229,7 +228,7 @@ module Persona
     # @return [String] la situación alimenticia del individuo
     def necesidad_alimenticia
       # Sumamos todos los costes calóricos de los alimentos presentes en la lista
-      calorias_totales = @datos_antropometricos.lista_alimentos.collect{ |i| i.valor_energetico_kcal}.reduce(:+)
+      calorias_totales = @datos_antropometricos.menu_dietetico.calorias_totales
       bajo_kcal = gasto_energetico_basal - efecto_termogeno
       alto_kcal = gasto_energetico_basal + efecto_termogeno
 

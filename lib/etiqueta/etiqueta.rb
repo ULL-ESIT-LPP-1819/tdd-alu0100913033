@@ -291,5 +291,24 @@ module Etiqueta
 
 
 
+  class MenuDietetico
+    attr_reader :lista_alimentos
+    # @param lista_alimentos [Etiqueta::Node] contiene un listado de alimentos consumidos a lo largo del día por el individuo
+    def initialize(lista_alimentos)
+      # raise ArgumentError, 'La lista es incorrecta' unless lista_alimentos.is_a? Node
+      @lista_alimentos = lista_alimentos
+    end
+
+    def calorias_totales
+      lista_alimentos.collect{ |i| i.valor_energetico_kcal}.reduce(:+)
+    end
+
+    def <=>(other)
+      return nil unless other.instance_of? MenuDietetico
+      calorias_totales <=> other.calorias_totales
+    end
+
+  end # MenuDietetico
+
 
 end # fin de module
