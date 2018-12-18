@@ -330,7 +330,7 @@ RSpec.describe Persona do
       # @Nodo9 = [@white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate.... , @apple2]
 
       #########Menús creados#########
-      @Menu_node = Persona::MenuDietetico.new(@node) #[@apple3, @apple, @apple2, @apple3, @apple]
+      @Menu_node = Persona::MenuDietetico.new(@node) #[@apple, @apple, @apple2, @apple3, @apple]
       @Menu = Persona::MenuDietetico.new(@Nodo)      #[@apple, @apple2, @apple3, @white_chocolate]
       @Menu2 = Persona::MenuDietetico.new(@Nodo2)    #[@white_chocolate, @meal, @meal, @meal]
       @Menu3 = Persona::MenuDietetico.new(@Nodo3)    #[@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
@@ -373,6 +373,11 @@ RSpec.describe Persona do
       # Vemos que, efectivamente, el array queda correctamente ordenado
       expect(@my_array_sorted).to eq(@my_array.sort { |x, y|  x <=> y })
 
+      end
+
+
+      it "Obtener un nuevo array de elementos ordenados usando el método each" do
+        expect(@my_array.sort { |x, y|  x <=> y }).to eq([@Menu_node, @Menu3, @Menu5, @Menu, @Menu7, @Menu4, @Menu8, @Menu2, @Menu6, @Menu9])
       end
 
   end # Práctica#11   ------   Menús dietéticos
