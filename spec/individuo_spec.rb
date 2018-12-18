@@ -620,6 +620,64 @@ RSpec.describe Persona do
     it "Obtener un nuevo array de elementos ordenados usando el método sort" do
       expect(@node_vn.sort { |x, y|  x <=> y }).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
     end
+
+    it "Benchmark sobre los distintos métodos de ordenación" do
+      n = n = 50000
+
+      Benchmark.bm do |x|
+      x.report {
+        @node_vn_copy = @node_vn.to_s
+        @node_to_compare = @node_vn.to_s
+        @node_vn_sorted = Etiqueta::Node.new(@Menu_minimo, nil, nil)
+        #@node_vn_sorted = Array.new(0)
+
+
+          for j in 0..@node_vn.get_size-1
+            it = -1
+            @Menu_minimo = Persona::ValoracionNutricional.new(@Dato_minimo, "Actividad intensa")
+            for i in 0..@node_vn_copy.count-1
+                  if @node_vn_copy[i].gasto_energetico_basal <= @Menu_minimo.gasto_energetico_basal
+                    @Menu_minimo = @node_vn_copy[i]
+                    it = i
+                  end
+            end
+
+            @node_vn_sorted.insert_head(@Menu_minimo)
+            #@node_vn_sorted.push(@Menu_minimo)
+            @node_vn_copy.delete_at(it)
+
+          end
+
+          @node_vn_sorted.remove_tail
+      }
+      x.report {
+        sorting = Array.new(0)
+        @node_vn.each do |node|
+          if sorting.empty?
+            sorting.push(node)
+          else
+            i = 0
+            while i < sorting.count
+              if node <= sorting[i]
+                sorting.insert(i, node)
+                break
+              end
+              if i == sorting.count-1
+                sorting.insert(i+1, node)
+                break
+              end
+              i += 1
+            end
+          end
+        end
+      }
+      x.report { @node_vn.sort { |x, y|  x <=> y } }
+      end
+
+
+    end
+
+
   end # Práctica#11   ------   Valores nutricionales
 
 
