@@ -4,6 +4,7 @@ Clase etiqueta que implementa la información nutricional. Se ha actualizado con
 - [x] Se ha actualizado con los requisitos de la práctica #8
 - [x] Se ha actualizado con los requisitos de la práctica #9
 - [x] Se ha actualizado con los requisitos de la práctica #10
+- [x] Se ha actualizado con los requisitos de la práctica #11
 
 ## Contributing
 
