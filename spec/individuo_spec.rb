@@ -508,14 +508,33 @@ RSpec.describe Persona do
         @node_vn_sorted.remove_tail
 
       # Vemos que, efectivamente, el array queda correctamente ordenado
-      #expect(node_vn_sorted.to_s).to eq(@node_to_compare.sort{ |x, y| x <=> y})
       expect(@node_vn_sorted.to_s).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
 
     end
 
 
     it "Obtener un nuevo array de elementos ordenados usando el método each" do
-      expect(@node_vn.sort{ |x, y| x <=> y}).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
+      sorting = Array.new(0)
+      @node_vn.each do |node|
+        if sorting.empty?
+          sorting.push(node)
+        else
+          i = 0
+          while i < sorting.count
+            if node <= sorting[i]
+              sorting.insert(i, node)
+              break
+            end
+            if i == sorting.count-1
+              sorting.insert(i+1, node)
+              break
+            end
+            i += 1
+          end
+        end
+      end
+
+      expect(sorting).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
     end
 
   end # Práctica#11   ------   Valores nutricionales
