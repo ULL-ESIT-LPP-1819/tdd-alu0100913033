@@ -1,5 +1,7 @@
 require 'spec_helper'
 require 'etiqueta/individuo'
+require 'benchmark'
+
 
 RSpec.describe Persona do
 
@@ -404,6 +406,57 @@ RSpec.describe Persona do
 
       it "Obtener un nuevo array de elementos ordenados usando el método sort" do
         expect(@my_array.sort { |x, y|  x <=> y }).to eq([@Menu_node, @Menu3, @Menu5, @Menu, @Menu7, @Menu4, @Menu8, @Menu2, @Menu6, @Menu9])
+      end
+
+
+      it "Benchmark sobre los distintos métodos de ordenación" do
+        n = n = 50000
+
+        Benchmark.bm do |x|
+          x.report('for:') {
+
+            my_array_copy = @my_array.map(&:clone)
+            @my_array_sorted = Array.new(0)
+
+
+              for j in 0.. @my_array.count-1
+                min = @Menu9
+                it = -1
+                for i in 0..my_array_copy.count-1
+                      if my_array_copy[i].calorias_totales <= min.calorias_totales
+                        min = my_array_copy[i]
+                        it = i
+                      end
+                end
+                @my_array_sorted.push(min)
+                my_array_copy.delete_at(it)
+              end
+
+          }
+          x.report('each')      {
+            sorting = Array.new(0)
+            @my_array.each do |node|
+              if sorting.empty?
+                sorting.push(node)
+              else
+                i = 0
+                while i < sorting.count
+                  if node <= sorting[i]
+                    sorting.insert(i, node)
+                    break
+                  end
+                  if i == sorting.count-1
+                    sorting.insert(i+1, node)
+                    break
+                  end
+                  i += 1
+                end
+              end
+            end
+
+          }
+          x.report('sort')      { @my_array.sort { |x, y|  x <=> y }}
+        end
       end
 
   end # Práctica#11   ------   Menús dietéticos
