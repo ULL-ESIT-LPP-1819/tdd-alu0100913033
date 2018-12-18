@@ -376,9 +376,35 @@ RSpec.describe Persona do
       end
 
 
+
       it "Obtener un nuevo array de elementos ordenados usando el método each" do
-        expect(@my_array.sort { |x, y|  x <=> y }).to eq([@Menu_node, @Menu3, @Menu5, @Menu, @Menu7, @Menu4, @Menu8, @Menu2, @Menu6, @Menu9])
+        sorting = Array.new(0)
+        @my_array.each do |node|
+          if sorting.empty?
+            sorting.push(node)
+          else
+            i = 0
+            while i < sorting.count
+              if node <= sorting[i]
+                sorting.insert(i, node)
+                break
+              end
+              if i == sorting.count-1
+                sorting.insert(i+1, node)
+                break
+              end
+              i += 1
+            end
+          end
+        end
+
+        expect(sorting).to eq([@Menu_node, @Menu3, @Menu5, @Menu, @Menu7, @Menu4, @Menu8, @Menu2, @Menu6, @Menu9])
       end
+
+
+      #it "Obtener un nuevo array de elementos ordenados usando el método sort" do
+        #expect(@my_array.sort { |x, y|  x <=> y }).to eq([@Menu_node, @Menu3, @Menu5, @Menu, @Menu7, @Menu4, @Menu8, @Menu2, @Menu6, @Menu9])
+      #end
 
   end # Práctica#11   ------   Menús dietéticos
 
