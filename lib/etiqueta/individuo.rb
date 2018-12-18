@@ -162,6 +162,7 @@ module Persona
 
   # @author Tomás González Martín
   class ValoracionNutricional
+    include Comparable
 
     attr_reader :datos_antropometricos, :nivel_actividad
 
@@ -246,7 +247,13 @@ module Persona
     end
 
 
-  end # class MValoracionNutricional
+    def <=>(other)
+      return nil unless other.instance_of? ValoracionNutricional
+      gasto_energetico_basal <=> other.gasto_energetico_basal
+    end
+
+
+  end # class ValoracionNutricional
 
 
   # @author Tomás González Martín

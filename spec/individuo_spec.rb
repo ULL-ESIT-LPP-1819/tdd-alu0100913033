@@ -356,8 +356,8 @@ RSpec.describe Persona do
       my_array_copy = @my_array.map(&:clone)
       @my_array_sorted = Array.new(0)
 
-      
-        for i in 0.. @my_array.count-1
+
+        for j in 0.. @my_array.count-1
           min = @Menu9
           it = -1
           for i in 0..my_array_copy.count-1
@@ -411,34 +411,42 @@ RSpec.describe Persona do
       @Nodo2.insert_head(@meal)
       # @Nodo2 = [@white_chocolate, @meal, @meal, @meal]
 
-      @Nodo3 = Etiqueta::Node.new(@strawberry_jaw, nil, nil)
-      @Nodo3.insert_head(@strawberry_jaw)
-      @Nodo3.insert_head(@meal)
-      @Nodo3.insert_head(@apple3)
-      # @Nodo3 = [@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
-
+      @Nodo9 = Etiqueta::Node.new(@white_chocolate, nil, nil)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@white_chocolate)
+      @Nodo9.insert_head(@apple2)
+      # @Nodo9 = [@white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate, @white_chocolate.... , @apple2]
       ###Menús dietéticos###
       @Menu = Persona::MenuDietetico.new(@Nodo)      #[@apple, @apple2, @apple3, @white_chocolate]
       @Menu2 = Persona::MenuDietetico.new(@Nodo2)    #[@white_chocolate, @meal, @meal, @meal]
-      @Menu3 = Persona::MenuDietetico.new(@Nodo3)    #[@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
+      @Menu3 = Persona::MenuDietetico.new(@Nodo9)    #[@strawberry_jaw, @strawberry_jaw, @meal, @apple3]
 
       #######Personas a valorar########
       @Datos_Pedro = Persona::DatosAntropometricos.new("Pedro", 77, 1.77, 28, 1, 69.3, 70.1, 1, @Menu)
       @Datos_Ana = Persona::DatosAntropometricos.new("Ana", 52, 1.68, 19, 0, 50.2, 60.2, 0, @Menu3)
       @Datos_Camilo = Persona::DatosAntropometricos.new("Camilo", 87, 1.71, 32, 1, 90.2, 93.1, 1, @Menu2)
-      @Datos_Nina = Persona::DatosAntropometricos.new("Nina", 52, 1.71, 92, 0, 50.2, 60.2, 0, @Menu_dietetico)
+      @Datos_Nina = Persona::DatosAntropometricos.new("Nina", 52, 1.71, 92, 0, 50.2, 60.2, 0, @Menu2)
       @Datos_Antonio = Persona::DatosAntropometricos.new("Antonio", 82, 1.77, 35, 1, 93.2, 93.1, 0, @Menu)
-      @Datos_Manuel = Persona::DatosAntropometricos.new("Manuel", 97, 1.91, 35, 1, 99.2, 99.1, 1, @Menu2)
+      @Datos_Manuel = Persona::DatosAntropometricos.new("Manuel", 88, 1.91, 35, 1, 99.2, 99.1, 1, @Menu2)
       @Datos_Felicia = Persona::DatosAntropometricos.new("Felicia", 110, 1.67, 52, 0, 120.2, 120.1, 1, @Menu3)
       @Datos_Paula = Persona::DatosAntropometricos.new("Paula", 51, 1.67, 21, 0, 50.2, 60.2, 0, @Menu)
       @Datos_Fatima = Persona::DatosAntropometricos.new("Fátima", 57, 1.67, 26, 0, 54.2, 66.3, 0, @Menu2)
       @Datos_Jose = Persona::DatosAntropometricos.new("José", 90, 1.65, 22, 1, 90.0, 95.0, 1, @Menu3)
+      @Dato_minimo = Persona::DatosAntropometricos.new("Infinito", 9999999999999, 165.0, 22, 1, 90.0, 95.0, 1, @Menu3)
 
 
       ######Valoraciones nutricionales######
-      # @Menu_Pedro
-      # @Menu_Ana
-      # @Menu_Camilo
+      @Menu_Pedro = Persona::ValoracionNutricional.new(@Datos_Pedro, "Actividad intensa")
+      @Menu_Camilo = Persona::ValoracionNutricional.new(@Datos_Camilo, "Actividad moderada")
+      @Menu_Ana = Persona::ValoracionNutricional.new(@Datos_Ana, "Reposo")
       @Menu_Nina = Persona::ValoracionNutricional.new(@Datos_Nina, "Reposo")
       @Menu_Fatima = Persona::ValoracionNutricional.new(@Datos_Fatima, "Actividad intensa")
       @Menu_Jose = Persona::ValoracionNutricional.new(@Datos_Jose, "Actividad moderada")
@@ -446,10 +454,8 @@ RSpec.describe Persona do
       @Menu_Manuel = Persona::ValoracionNutricional.new(@Datos_Manuel, "Actividad ligera")
       @Menu_Felicia = Persona::ValoracionNutricional.new(@Datos_Felicia, "Reposo")
       @Menu_Paula = Persona::ValoracionNutricional.new(@Datos_Paula, "Reposo")
+      @Menu_minimo = Persona::ValoracionNutricional.new( @Dato_minimo, "Actividad intensa")
 
-    end #before :all
-
-    it "Representación de 10 valoraciones nutricionales de un individuo mediante una DLL" do
       @node_vn = Etiqueta::Node.new(@Menu_Pedro, nil, nil)
       @node_vn.insert_head(@Menu_Ana)
       @node_vn.insert_head(@Menu_Camilo)
@@ -461,8 +467,45 @@ RSpec.describe Persona do
       @node_vn.insert_head(@Menu_Felicia)
       @node_vn.insert_head(@Menu_Paula)
 
+    end #before :all
+
+    it "Representación de 10 valoraciones nutricionales de un individuo mediante una DLL" do
+
+
       expect(@node_vn.get_size).to eq(10)
       expect(@node_vn.class).to eq(Etiqueta::Node)
+
+    end
+
+    it "Obtener un nuevo array con los elementos ordenados usando bucles for" do
+      @node_vn_copy = @node_vn.to_s
+      @node_to_compare = @node_vn.to_s
+      @node_vn_sorted = Etiqueta::Node.new(@Menu_minimo, nil, nil)
+      #@node_vn_sorted = Array.new(0)
+
+
+        for j in 0..@node_vn.get_size-1
+          it = -1
+          @Menu_minimo = Persona::ValoracionNutricional.new(@Dato_minimo, "Actividad intensa")
+          for i in 0..@node_vn_copy.count-1
+                if @node_vn_copy[i].gasto_energetico_basal <= @Menu_minimo.gasto_energetico_basal
+                  @Menu_minimo = @node_vn_copy[i]
+                  it = i
+                end
+          end
+
+          @node_vn_sorted.insert_head(@Menu_minimo)
+          #@node_vn_sorted.push(@Menu_minimo)
+          @node_vn_copy.delete_at(it)
+
+        end
+
+        @node_vn_sorted.remove_tail
+
+      # Vemos que, efectivamente, el array queda correctamente ordenado
+      #expect(node_vn_sorted.to_s).to eq(@node_to_compare.sort{ |x, y| x <=> y})
+      expect(@node_vn_sorted.to_s).to eq([@Menu_Nina, @Menu_Paula, @Menu_Ana, @Menu_Fatima, @Menu_Pedro, @Menu_Antonio, @Menu_Camilo, @Menu_Jose, @Menu_Felicia, @Menu_Manuel])
+
     end
 
   end # Práctica#11   ------   Valores nutricionales

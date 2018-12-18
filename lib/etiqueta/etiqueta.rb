@@ -178,12 +178,20 @@ module Etiqueta
     #######################################
     # Método de eliminación de la cabeza de la dll
     def remove_head
-      self.next = nil
+      if self == self.gethead && self.next == nil
+        self.prev.next = nil
+      else
+        gethead.remove_head
+      end
     end
 
     # Método de eliminación de la cabeza de la dll
     def remove_tail
-      self.prev = nil
+      if self == self.gettail && self.prev == nil
+        self.next.prev = nil
+      else
+        gettail.remove_tail
+      end
     end
 
     #######################################
@@ -229,9 +237,10 @@ module Etiqueta
       @@out.insert(0, self.value)
       if self.prev != nil
         self.prev.display
+      else
+        @@out.compact
       end
 
-      @@out
 
     end
 
@@ -252,9 +261,7 @@ module Etiqueta
     end
 
     def each
-      #for i in self.to_s do
-      #  yield i
-      #end
+
       nodo = gettail
       while nodo != nil
           yield nodo.value

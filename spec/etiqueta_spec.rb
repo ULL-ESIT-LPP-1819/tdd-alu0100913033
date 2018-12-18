@@ -253,7 +253,7 @@ RSpec.describe Etiqueta do
 
     it " * Eliminación de un nodo del HEAD" do
       @node.remove_head                       #[manzana3, manzana1]
-      expect(@node.next).to eq(nil)           #   -1        0
+      expect(@node.next.value).to eq(@apple2)
     end
 
     it " * Eliminación de un nodo en el TAIL" do
@@ -367,7 +367,7 @@ RSpec.describe Etiqueta do
 
   end # Práctica#09
 
-  
+
 
 
 end # RSpec.describe Etiqueta
